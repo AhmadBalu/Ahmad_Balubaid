@@ -17,6 +17,7 @@ import {
   FiServer,
 } from "react-icons/fi";
 import { HiSparkles } from "react-icons/hi";
+import { getAssetPath } from "../utils/assets";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,7 +64,7 @@ const projects: ProjectItem[] = [
       "Cloudflare Clearance",
       "StarlightSkins API",
     ],
-    image: "/labymod.jpg",
+    image: getAssetPath("/labymod.jpg"),
     githubUrl: "https://github.com/AhmadBalu",
     interactiveType: "labychecker",
     deepDive: {
@@ -94,7 +95,7 @@ const projects: ProjectItem[] = [
       { label: "Query Latency", value: "< 240ms" },
     ],
     tags: ["IEEE Publication", "Python", "LangChain", "Arabic NLP", "Vector DB", "RAG", "Embeddings"],
-    image: "/Paper.png",
+    image: getAssetPath("/Paper.png"),
     githubUrl: "https://github.com/AhmadBalu",
     interactiveType: "rag",
     deepDive: {
@@ -122,7 +123,7 @@ const projects: ProjectItem[] = [
       { label: "Clinical Features", value: "48 Biomarkers" },
     ],
     tags: ["Python", "Scikit-Learn", "XGBoost", "Clinical ML", "Data Science", "Pandas"],
-    image: "/hospital.jpg",
+    image: getAssetPath("/hospital.jpg"),
     githubUrl: "https://github.com/AhmadBalu",
     interactiveType: "clinical",
     deepDive: {
@@ -149,7 +150,7 @@ const projects: ProjectItem[] = [
       { label: "Bot Mitigation", value: "Real-time Heuristics" },
     ],
     tags: ["Java", "Linux Admin", "Spigot/Paper API", "Anti-Bot Heuristics", "MySQL", "Docker"],
-    image: "/nektax.png",
+    image: getAssetPath("/nektax.png"),
     githubUrl: "https://github.com/AhmadBalu",
     interactiveType: "infrastructure",
     deepDive: {
@@ -176,7 +177,7 @@ const projects: ProjectItem[] = [
       { label: "Persistence", value: "PostgreSQL" },
     ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Python", "EDA"],
-    image: "/exam1.jpg",
+    image: getAssetPath("/exam1.jpg"),
     githubUrl: "https://github.com/AhmadBalu",
     interactiveType: "stack",
     deepDive: {

@@ -6,6 +6,8 @@ import Image from "next/image";
 import { FiCpu, FiActivity, FiServer, FiArrowRight } from "react-icons/fi";
 import { HiSparkles } from "react-icons/hi";
 
+import { getAssetPath } from "../utils/assets";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
@@ -105,7 +107,7 @@ export default function About() {
               {/* Portrait Image */}
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900">
                 <Image
-                  src="/shot.jpeg"
+                  src={getAssetPath("/shot.jpeg")}
                   alt="Ahmad Balubaid"
                   fill
                   sizes="(max-width: 768px) 100vw, 500px"

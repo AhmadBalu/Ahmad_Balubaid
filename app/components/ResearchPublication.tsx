@@ -7,6 +7,8 @@ import { FiAward, FiExternalLink, FiBookOpen, FiUsers, FiCheckCircle } from "rea
 import { FaLinkedin } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
+import { getAssetPath } from "../utils/assets";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ResearchPublication() {
@@ -127,7 +129,7 @@ export default function ResearchPublication() {
               {/* Paper Screenshot Preview */}
               <div className="relative w-full h-56 rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
                 <Image
-                  src="/Paper.png"
+                  src={getAssetPath("/Paper.png")}
                   alt="Lawsuit AraRAG IEEE Xplore Publication"
                   fill
                   sizes="(max-width: 768px) 100vw, 600px"
@@ -185,7 +187,7 @@ export default function ResearchPublication() {
               {/* Research Team Photo */}
               <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
                 <Image
-                  src="/researchteam.jpg"
+                  src={getAssetPath("/researchteam.jpg")}
                   alt="Ahmad Balubaid and Research Team at ILTC 2026 Conference"
                   fill
                   sizes="(max-width: 768px) 100vw, 600px"
