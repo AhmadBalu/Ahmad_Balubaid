@@ -32,6 +32,19 @@ const timelineData: TimelineEntry[] = [
   },
   {
     period: "2024 — 2025",
+    role: "Creator & Lead Developer",
+    institution: "LabyChecker Platform",
+    type: "CROSS-NETWORK INTELLIGENCE",
+    highlights: [
+      "Engineered Python 3.12 asyncio & aiohttp multi-network player telemetry scraping across 18+ servers",
+      "Implemented Camoufox/Trawl headless scraping cluster & Cloudflare session clearance pooling",
+      "Built cryptographic Laby.net Discord verification, 3D skin rendering, and dynamic timestamp normalization",
+    ],
+    metrics: "Scale: 18+ Networks Integrated",
+    accent: "#38bdf8",
+  },
+  {
+    period: "2024 — 2025",
     role: "Systems Developer & Platform Manager",
     institution: "Nektax.net Community Network",
     type: "HIGH-CONCURRENCY PLATFORM",
@@ -42,7 +55,7 @@ const timelineData: TimelineEntry[] = [
       "Scaled infrastructure supporting a 3,000+ active online user base with 99.8% uptime",
     ],
     metrics: "Scale: 3,000+ Active Users",
-    accent: "#38bdf8",
+    accent: "#f59e0b",
   },
   {
     period: "2024",

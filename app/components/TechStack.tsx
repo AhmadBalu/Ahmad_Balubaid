@@ -16,9 +16,9 @@ interface TechItem {
 const techCapabilities: TechItem[] = [
   // AI & Intelligence
   {
-    name: "Python",
+    name: "Python 3.12",
     category: "ai",
-    context: "Core AI modeling, data pipelines, backend APIs",
+    context: "Asyncio streaming engines, AI pipelines, aiohttp backend",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   },
   {
@@ -47,6 +47,18 @@ const techCapabilities: TechItem[] = [
   },
 
   // Backend & Systems
+  {
+    name: "asyncio & aiohttp",
+    category: "backend",
+    context: "Parallel cross-network scraping, dual-stage streaming",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  },
+  {
+    name: "Discord API",
+    category: "backend",
+    context: "Gateway events, dynamic embeds, cryptographic role sync",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg",
+  },
   {
     name: "Java",
     category: "backend",
@@ -111,6 +123,18 @@ const techCapabilities: TechItem[] = [
   },
 
   // DevOps & Infrastructure
+  {
+    name: "Camoufox / Trawl",
+    category: "infra",
+    context: "Headless anti-bot browser automation & Turnstile solve",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+  },
+  {
+    name: "Cloudflare Clearance",
+    category: "infra",
+    context: "Session pooling, TLS fingerprints, rate-limit pooling",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
+  },
   {
     name: "Docker",
     category: "infra",
