@@ -1,249 +1,218 @@
-﻿"use client";
+"use client";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import { HiArrowDown, HiSparkles, HiShieldCheck } from "react-icons/hi";
+import { FiArrowUpRight, FiCpu, FiDatabase, FiActivity } from "react-icons/fi";
 import dynamic from "next/dynamic";
 
 const ThreeScene = dynamic(() => import("./ThreeScene"), { ssr: false });
 
 export default function Hero() {
-  const orbRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const dividerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const badgesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    tl.fromTo(
-      orbRef.current,
-      { scale: 0.6, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.2 }
-    )
-      .fromTo(
-        ".name-letter",
-        { opacity: 0, y: 30, filter: "blur(6px)" },
-        { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.04, duration: 0.6 },
-        "-=0.5"
+      tl.fromTo(
+        ".hero-badge-top",
+        { opacity: 0, y: -20, scale: 0.9 },
+        { opacity: 1, y: 0, scale: 1, duration: 1, delay: 0.2 }
       )
-      .fromTo(
-        dividerRef.current,
-        { scaleX: 0, opacity: 0 },
-        { scaleX: 1, opacity: 1, duration: 0.8 },
-        "-=0.3"
-      )
-      .fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        "-=0.4"
-      );
+        .fromTo(
+          ".hero-char",
+          { opacity: 0, y: 60, rotateX: 30, filter: "blur(8px)" },
+          { opacity: 1, y: 0, rotateX: 0, filter: "blur(0px)", stagger: 0.03, duration: 1.1 },
+          "-=0.7"
+        )
+        .fromTo(
+          ".hero-subtext",
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.9 },
+          "-=0.6"
+        )
+        .fromTo(
+          ".hero-telemetry-card",
+          { opacity: 0, y: 35, scale: 0.94 },
+          { opacity: 1, y: 0, scale: 1, stagger: 0.12, duration: 0.8 },
+          "-=0.5"
+        )
+        .fromTo(
+          ".hero-cta-group",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          "-=0.4"
+        );
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const firstName = "Ahmad";
-  const orbContainerRef = useRef<HTMLDivElement>(null);
   const lastName = "Balubaid";
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#03080f]">
-      {/* Noise grain overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.14]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundSize: "180px",
-        }}
-      />
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 pt-28 pb-16 overflow-hidden bg-[#05070c]"
+    >
+      {/* Ambient Fluid Glow Blobs */}
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#0df5c8]/20 -top-32 -left-32 animate-[floatOrb_20s_infinite_alternate]" />
+      <div className="ambient-glow w-[600px] h-[600px] bg-[#38bdf8]/15 top-1/3 -right-48 animate-[floatReverse_22s_infinite_alternate]" />
+      <div className="ambient-glow w-[450px] h-[450px] bg-[#818cf8]/15 -bottom-24 left-1/4 animate-[floatOrb_18s_infinite_alternate]" />
 
-      {/* Nebula radial glow layers */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          background: `
-            radial-gradient(ellipse 55% 45% at 15% 65%, rgba(0,190,170,0.09) 0%, transparent 65%),
-            radial-gradient(ellipse 45% 38% at 85% 30%, rgba(180,140,10,0.07) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 55% at 50% 45%, rgba(0,60,100,0.14) 0%, transparent 70%)
-          `,
-        }}
-      />
-
-      {/* Three.js star field */}
-      <div className="absolute inset-0 z-[1] opacity-90">
+      {/* 3D Background Canvas */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-65">
         <ThreeScene />
       </div>
 
-      {/* Nav */}
-      <nav className="absolute top-0 left-0 right-0 flex justify-end items-center px-10 py-6 gap-8 z-20">
-        {["Home", "Portfolio", "About", "Contact"].map((item) => (
-          <a
-            key={item}
-            href="#"
-            className="font-mono text-[9.5px] tracking-[0.2em] uppercase text-[rgba(160,195,220,0.45)] hover:text-[rgba(0,220,195,0.85)] transition-colors duration-300"
-          >
-            {item}
-          </a>
-        ))}
-        <a
-          href="#"
-          className="font-mono text-[9.5px] tracking-[0.2em] uppercase text-[rgba(0,210,185,0.6)] hover:text-[rgba(0,210,185,0.95)] border border-[rgba(0,210,185,0.28)] hover:bg-[rgba(0,210,185,0.06)] px-3 py-1.5 rounded-[3px] transition-all duration-300"
-        >
-          ↓ Resume
-        </a>
-      </nav>
+      {/* Hero Content Container */}
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+        {/* Top Status & Telemetry Pill */}
+        <div className="hero-badge-top flex flex-wrap items-center justify-center gap-2 mb-8">
+          <div className="liquid-glass-pill px-4 py-1.5 flex items-center gap-2.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0df5c8] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0df5c8]"></span>
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-widest text-[#0df5c8] font-medium">
+              Available for High-Impact Roles & Research
+            </span>
+          </div>
 
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center">
-
-        {/* Orb */}
-        <div ref={orbRef} className="relative w-40 h-40 mb-10">
-          {/* Outer pulse glow */}
-          <div
-            className="absolute rounded-full animate-pulse"
-            style={{
-              inset: "-28px",
-              background: "radial-gradient(circle, rgba(0,200,175,0.07) 0%, transparent 68%)",
-            }}
-          />
-
-          {/* Floating wrapper */}
-          <div className="relative w-full h-full animate-[float_7s_ease-in-out_infinite]">
-            {/* SVG ring + mesh */}
-            <svg
-              viewBox="0 0 160 160"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute inset-0 w-full h-full animate-[spin_28s_linear_infinite]"
-            >
-              <defs>
-                <linearGradient id="ringGrad" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#22e5c8" />
-                  <stop offset="55%" stopColor="#22e5c8" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#d4aa22" />
-                </linearGradient>
-                <clipPath id="orbClip">
-                  <circle cx="80" cy="80" r="57" />
-                </clipPath>
-              </defs>
-
-              {/* Inner mesh lines */}
-              <g clipPath="url(#orbClip)" opacity="0.2">
-                <ellipse cx="80" cy="80" rx="57" ry="28" stroke="rgba(0,200,175,0.5)" strokeWidth="0.5" fill="none" />
-                <ellipse cx="80" cy="80" rx="57" ry="14" stroke="rgba(0,200,175,0.3)" strokeWidth="0.5" fill="none" />
-                <line x1="23" y1="80" x2="137" y2="80" stroke="rgba(0,200,175,0.35)" strokeWidth="0.5" />
-                <line x1="80" y1="23" x2="80" y2="137" stroke="rgba(0,200,175,0.35)" strokeWidth="0.5" />
-                <circle cx="80" cy="80" r="30" stroke="rgba(0,200,175,0.2)" strokeWidth="0.5" fill="none" />
-                <circle cx="80" cy="80" r="44" stroke="rgba(0,200,175,0.12)" strokeWidth="0.5" fill="none" />
-              </g>
-
-              {/* Outer dashed orbit */}
-              <circle cx="80" cy="80" r="72" stroke="rgba(34,229,200,0.07)" strokeWidth="0.5" strokeDasharray="3 8" fill="none" />
-
-              {/* Main gradient ring */}
-              <circle cx="80" cy="80" r="57" stroke="url(#ringGrad)" strokeWidth="1.5" fill="none" />
-
-              {/* Accent dots */}
-              <circle cx="80" cy="23" r="2.5" fill="#22e5c8" opacity="0.75" />
-              <circle cx="137" cy="80" r="1.5" fill="#d4aa22" opacity="0.5" />
-            </svg>
-
-            {/* Center dark circle with initials */}
-            <div
-              className="absolute flex items-center justify-center rounded-full border border-[rgba(0,190,170,0.12)]"
-              style={{
-                inset: "22px",
-                background: "radial-gradient(circle at 35% 30%, #0c2232, #020b14)",
-              }}
-            >
-              <span
-                className="font-mono text-[20px] font-light tracking-widest"
-                style={{
-                  background: "linear-gradient(135deg, #22e5c8, #d4aa22)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                AB
-              </span>
-            </div>
+          <div className="liquid-glass-pill px-3 py-1.5 hidden sm:flex items-center gap-2 font-mono text-[11px] text-slate-300">
+            <span className="text-slate-400">LOC //</span>
+            <span>Saudi Arabia 🇸🇦</span>
           </div>
         </div>
 
-        {/* Name */}
-        <h1
-          ref={nameRef}
-          className="text-[clamp(3.6rem,8vw,6rem)] font-light text-[#dde8f0] tracking-[0.05em] leading-none mb-4 text-center"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          {firstName.split("").map((l, i) => (
-            <span key={`f${i}`} className="name-letter inline-block italic text-[#c2d8e8]">
-              {l}
+        {/* Monumental Editorial Headline */}
+        <div className="mb-6 overflow-hidden">
+          <h1
+            ref={headlineRef}
+            className="text-[clamp(3.8rem,10vw,8.5rem)] font-light tracking-[-0.03em] leading-[0.92] text-white select-none"
+          >
+            <span className="font-editorial italic font-light text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-100 to-slate-400">
+              {firstName.split("").map((c, i) => (
+                <span key={i} className="hero-char inline-block">
+                  {c}
+                </span>
+              ))}
             </span>
-          ))}
-          <span className="name-letter inline-block">&nbsp;</span>
-          {lastName.split("").map((l, i) => (
-            <span key={`s${i}`} className="name-letter inline-block">
-              {l}
+            <span className="hero-char inline-block">&nbsp;</span>
+            <span className="font-syne font-extrabold uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
+              {lastName.split("").map((c, i) => (
+                <span key={i} className="hero-char inline-block">
+                  {c}
+                </span>
+              ))}
             </span>
-          ))}
-        </h1>
+          </h1>
+        </div>
 
-        {/* Gradient divider */}
-        <div
-          ref={dividerRef}
-          className="origin-center mb-4"
-          style={{
-            width: "120px",
-            height: "0.5px",
-            background: "linear-gradient(90deg, transparent, #22e5c8, #d4aa22, transparent)",
-          }}
-        />
-
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="font-mono text-[10.5px] tracking-[0.22em] uppercase text-[rgba(140,175,200,0.55)]"
-        >
-          AI Engineer
-          <span className="text-[rgba(34,229,200,0.35)] mx-3 text-[8px] align-middle">◆</span>
-          Full Stack Developer
-          <span className="text-[rgba(34,229,200,0.35)] mx-3 text-[8px] align-middle">◆</span>
-          Researcher
+        {/* Subtitle / Role */}
+        <p className="hero-subtext font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-slate-300/80 mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+          <span className="text-[#0df5c8]">AI Engineer</span>
+          <span className="text-white/20">◆</span>
+          <span className="text-white">Full Stack Developer</span>
+          <span className="text-white/20">◆</span>
+          <span className="text-[#38bdf8]">Applied Researcher</span>
         </p>
-      </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-8 flex flex-col items-center gap-2 animate-[fadeIn_1.5s_ease_0.8s_both] z-10">
-        <span className="font-mono text-[8px] tracking-[0.25em] uppercase text-[rgba(120,160,185,0.35)]">
-          Scroll
-        </span>
-        <div className="flex flex-col items-center gap-1 animate-[bounce_2.2s_ease-in-out_infinite]">
-          <div
-            className="w-3.5 h-px origin-center"
-            style={{
-              background: "rgba(34,229,200,0.4)",
-              transform: "rotate(35deg) translateX(3px)",
-            }}
-          />
-          <div
-            className="w-3.5 h-px origin-center"
-            style={{
-              background: "rgba(34,229,200,0.4)",
-              transform: "rotate(-35deg) translateX(-3px)",
-            }}
-          />
+        {/* Editorial Value Proposition */}
+        <p className="hero-subtext max-w-2xl text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-10 text-balance">
+          Architecting domain-grounded <span className="text-white font-normal underline decoration-[#0df5c8]/40 underline-offset-4">Arabic RAG systems</span>, clinical predictive machine learning, and resilient <span className="text-white font-normal underline decoration-[#38bdf8]/40 underline-offset-4">high-throughput infrastructure</span>.
+        </p>
+
+        {/* CTAs */}
+        <div className="hero-cta-group flex flex-wrap items-center justify-center gap-4 mb-16">
+          <a
+            href="#projects"
+            className="liquid-glass-pill px-7 py-3.5 bg-white/[0.08] hover:bg-[#0df5c8]/15 border border-white/20 hover:border-[#0df5c8]/60 text-white hover:text-[#0df5c8] font-mono text-xs uppercase tracking-widest flex items-center gap-3 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group"
+          >
+            <span>Explore Flagship Works</span>
+            <HiArrowDown className="text-sm group-hover:translate-y-1 transition-transform text-[#0df5c8]" />
+          </a>
+
+          <a
+            href="#contact"
+            className="liquid-glass-pill px-7 py-3.5 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-all duration-300"
+          >
+            <span>Initiate Dispatch</span>
+            <FiArrowUpRight className="text-sm text-slate-400 group-hover:text-white transition-colors" />
+          </a>
+        </div>
+
+        {/* Liquid Glass Telemetry Cards Grid */}
+        <div
+          ref={badgesRef}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl"
+        >
+          {/* Card 1 */}
+          <div className="hero-telemetry-card liquid-glass-card rounded-2xl p-5 text-left flex flex-col justify-between border border-white/10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#0df5c8]">
+                [ 01 // INTELLIGENCE ]
+              </span>
+              <FiCpu className="text-[#0df5c8] text-base" />
+            </div>
+            <h3 className="font-syne font-bold text-white text-base mb-1">
+              Arabic RAG & NLP
+            </h3>
+            <p className="text-xs text-slate-400 font-light leading-snug">
+              Specialized legal & domain retrieval pipelines with semantic grounding.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="hero-telemetry-card liquid-glass-card rounded-2xl p-5 text-left flex flex-col justify-between border border-white/10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#38bdf8]">
+                [ 02 // CLINICAL ML ]
+              </span>
+              <FiActivity className="text-[#38bdf8] text-base" />
+            </div>
+            <h3 className="font-syne font-bold text-white text-base mb-1">
+              Healthcare Telemetry
+            </h3>
+            <p className="text-xs text-slate-400 font-light leading-snug">
+              Machine learning models predicting cardiac & clinical outcome complications.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="hero-telemetry-card liquid-glass-card rounded-2xl p-5 text-left flex flex-col justify-between border border-white/10">
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#f59e0b]">
+                [ 03 // SYSTEMS ]
+              </span>
+              <FiDatabase className="text-[#f59e0b] text-base" />
+            </div>
+            <h3 className="font-syne font-bold text-white text-base mb-1">
+              3,000+ Scale Systems
+            </h3>
+            <p className="text-xs text-slate-400 font-light leading-snug">
+              Production Java plugins, anti-bot pipelines, and Linux server orchestration.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Corner decorations */}
-      <span className="absolute bottom-6 left-7 font-mono text-[11px] tracking-wide text-[rgba(34,229,200,0.22)] z-10">
-        N
-      </span>
-      <svg className="absolute bottom-6 right-7 z-10" width="18" height="18" viewBox="0 0 18 18" fill="none">
-        <path d="M9 0 L18 9 L9 18 L0 9 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" strokeWidth="0.5" />
-      </svg>
+      {/* Bottom Architectural Scroll Cue */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none opacity-60">
+        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-slate-400">
+          SCROLL TO EXPLORE
+        </span>
+        <div className="w-4 h-7 rounded-full border border-white/20 flex items-start justify-center p-1">
+          <div className="w-1 h-1.5 rounded-full bg-[#0df5c8] animate-bounce" />
+        </div>
+      </div>
     </section>
   );
 }
+
 
 
 

@@ -1,55 +1,78 @@
-﻿"use client";
+"use client";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { FiMail, FiArrowUp } from "react-icons/fi";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-black border-t border-gray-800 py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-8 md:mb-0">
-          <p className="text-gray-400 font-space text-sm mb-2">
-            Open to opportunities
-          </p>
-          <p className="text-gray-500 font-space text-xs">
-            Based in Saudi Arabia
+    <footer className="relative bg-[#030509] border-t border-white/10 py-16 px-4 sm:px-8 md:px-12 overflow-hidden">
+      {/* Background glow */}
+      <div className="ambient-glow w-[300px] h-[300px] bg-[#0df5c8]/5 -top-10 left-1/2 -translate-x-1/2" />
+
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+        {/* Left Identity & Coordinates */}
+        <div className="text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span className="w-2 h-2 rounded-full bg-[#0df5c8]" />
+            <h4 className="font-syne font-bold text-white text-base tracking-wider">
+              AHMAD BALUBAID
+            </h4>
+          </div>
+          <p className="font-mono text-[11px] text-slate-400">
+            AI Engineer & Systems Architect • Saudi Arabia 🇸🇦 (21.54° N, 39.17° E)
           </p>
         </div>
 
-        <div className="flex gap-4 mb-8 md:mb-0">
+        {/* Center Socials */}
+        <div className="flex items-center gap-3">
           <a
-            href="https://github.com"
+            href="https://github.com/AhmadBalu"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-11 h-11 rounded-full bg-gray-900 text-gray-400 hover:text-accent-cyan hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] transition-all duration-300"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-white hover:border-[#0df5c8]/50 transition-colors"
             aria-label="GitHub"
           >
-            <SiGithub className="w-5 h-5" />
+            <SiGithub size={16} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/ahmad-balubaid/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-11 h-11 rounded-full bg-gray-900 text-gray-400 hover:text-accent-cyan hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] transition-all duration-300"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#38bdf8] hover:border-[#38bdf8]/50 transition-colors"
             aria-label="LinkedIn"
           >
-            <FaLinkedin className="w-5 h-5" />
+            <FaLinkedin size={16} />
           </a>
           <a
-            href="mailto:AhmadoBalubaid@gmail.com"
-            className="flex items-center justify-center w-11 h-11 rounded-full bg-gray-900 text-gray-400 hover:text-accent-cyan hover:shadow-[0_0_15px_rgba(0,255,255,0.5)] transition-all duration-300"
+            href="mailto:Ahmadobalubaid@gmail.com"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#0df5c8] hover:border-[#0df5c8]/50 transition-colors"
             aria-label="Email"
           >
-            <MdEmail className="w-5 h-5" />
+            <FiMail size={16} />
           </a>
         </div>
 
-        <div className="text-gray-500 font-space text-xs">
-          Ahmad Balubaid
+        {/* Right Back to Top & Copyright */}
+        <div className="flex flex-col items-center md:items-end gap-2">
+          <button
+            onClick={scrollToTop}
+            className="liquid-glass-pill px-4 py-2 text-xs font-mono text-slate-300 hover:text-[#0df5c8] flex items-center gap-2 border border-white/10 cursor-pointer group"
+          >
+            <span>Ascend to Top</span>
+            <FiArrowUp className="group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+          <p className="font-mono text-[10px] text-slate-400">
+            © 2026 Ahmad Balubaid. All systems operational.
+          </p>
         </div>
       </div>
     </footer>
   );
 }
+
 
 

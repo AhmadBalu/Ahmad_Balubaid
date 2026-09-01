@@ -1,51 +1,88 @@
-﻿"use client";
-import { useEffect, useRef } from "react";
+"use client";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    if (!cursor) return;
+    // Only enable custom cursor on non-touch devices
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
 
-    let posX = 0;
-    let posY = 0;
-    let mouseX = 0;
-    let mouseY = 0;
+    setIsVisible(true);
 
-    const updateCursor = () => {
-      posX += (mouseX - posX) / 8;
-      posY += (mouseY - posY) / 8;
-      cursor.style.left = `${posX}px`;
-      cursor.style.top = `${posY}px`;
-      requestAnimationFrame(updateCursor);
-    };
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let animFrameId: number;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (dotRef.current) {
+        dotRef.current.style.left = `${mouseX}px`;
+        dotRef.current.style.top = `${mouseY}px`;
+      }
     };
 
-    const handleMouseEnter = () => cursor.classList.add("hover");
-    const handleMouseLeave = () => cursor.classList.remove("hover");
+    const render = () => {
+      // Smooth liquid trailing
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
 
-    document.addEventListener("mousemove", handleMouseMove);
-    const hoverElements = document.querySelectorAll("a, button, .project-card");
-    hoverElements.forEach(el => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
+      if (ringRef.current) {
+        ringRef.current.style.left = `${ringX}px`;
+        ringRef.current.style.top = `${ringY}px`;
+      }
 
-    updateCursor();
+      animFrameId = requestAnimationFrame(render);
+    };
+
+    const handleMouseEnter = () => {
+      ringRef.current?.classList.add("active");
+    };
+
+    const handleMouseLeave = () => {
+      ringRef.current?.classList.remove("active");
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    render();
+
+    const addInteractiveListeners = () => {
+      const targets = document.querySelectorAll(
+        "a, button, input, textarea, [data-cursor-hover], .liquid-glass-card, .cursor-pointer"
+      );
+      targets.forEach((target) => {
+        target.addEventListener("mouseenter", handleMouseEnter);
+        target.addEventListener("mouseleave", handleMouseLeave);
+      });
+    };
+
+    addInteractiveListeners();
+
+    // Observe DOM mutations to bind new elements
+    const observer = new MutationObserver(addInteractiveListeners);
+    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      hoverElements.forEach(el => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animFrameId);
+      observer.disconnect();
     };
   }, []);
 
-  return <div ref={cursorRef} className="custom-cursor" />;
+  if (!isVisible) return null;
+
+  return (
+    <>
+      <div ref={dotRef} className="custom-cursor-dot" />
+      <div ref={ringRef} className="custom-cursor-ring" />
+    </>
+  );
 }
+
