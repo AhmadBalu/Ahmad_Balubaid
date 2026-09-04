@@ -8,6 +8,9 @@ import { FaLinkedin } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
 import { getAssetPath } from "../utils/assets";
+import TiltCard from "./TiltCard";
+import TextScramble from "./TextScramble";
+import MagneticButton from "./MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,150 +94,156 @@ export default function ResearchPublication() {
         {/* 2-Column Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           {/* Left: IEEE Paper Preview Card */}
-          <div
-            ref={leftCardRef}
-            className="lg:col-span-6 liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between"
-          >
-            <div>
-              {/* Top Meta Badges */}
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-                <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#0df5c8] border border-[#0df5c8]/40 flex items-center gap-2">
-                  <FiBookOpen />
-                  <span>IEEE Xplore Digital Library</span>
-                </span>
-                <span className="font-mono text-xs text-slate-400">
-                  23rd ILTC Conference • 2026
-                </span>
-              </div>
+          <div ref={leftCardRef} className="lg:col-span-6">
+            <TiltCard maxTilt={6} glowColor="rgba(13, 245, 200, 0.15)" className="h-full">
+              <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between h-full">
+                <div>
+                  {/* Top Meta Badges */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#0df5c8] border border-[#0df5c8]/40 flex items-center gap-2">
+                      <FiBookOpen />
+                      <TextScramble text="IEEE Xplore Digital Library" />
+                    </span>
+                    <span className="font-mono text-xs text-slate-400">
+                      23rd ILTC Conference • 2026
+                    </span>
+                  </div>
 
-              {/* Paper Title */}
-              <h3 className="font-syne font-extrabold text-xl sm:text-2xl text-white mb-4 leading-snug">
-                Lawsuit AraRAG: A Retrieval-Augmented Generation Framework for Arabic Legal Document Understanding and Hallucination Reduction
-              </h3>
+                  {/* Paper Title */}
+                  <h3 className="font-syne font-extrabold text-xl sm:text-2xl text-white mb-4 leading-snug">
+                    Lawsuit AraRAG: A Retrieval-Augmented Generation Framework for Arabic Legal Document Understanding and Hallucination Reduction
+                  </h3>
 
-              {/* Authors List */}
-              <div className="liquid-glass-subtle rounded-xl p-3.5 border border-white/10 mb-6 font-mono text-xs">
-                <p className="text-slate-400 text-[10px] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <FiUsers className="text-[#0df5c8]" />
-                  <span>Authors & Researchers</span>
-                </p>
-                <p className="text-slate-200 leading-relaxed font-medium">
-                  Passent ElKafrawy · Ahmad Hakim · <span className="text-[#0df5c8] font-bold">Ahmad Balubaid</span> · Faisal Alkhalili
-                </p>
-                <p className="text-slate-400 text-[11px] mt-1">
-                  Effat University — Department of Computer Science
-                </p>
-              </div>
+                  {/* Authors List */}
+                  <div className="liquid-glass-subtle rounded-xl p-3.5 border border-white/10 mb-6 font-mono text-xs">
+                    <p className="text-slate-400 text-[10px] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                      <FiUsers className="text-[#0df5c8]" />
+                      <span>Authors & Researchers</span>
+                    </p>
+                    <p className="text-slate-200 leading-relaxed font-medium">
+                      Passent ElKafrawy · Ahmad Hakim · <span className="text-[#0df5c8] font-bold">Ahmad Balubaid</span> · Faisal Alkhalili
+                    </p>
+                    <p className="text-slate-400 text-[11px] mt-1">
+                      Effat University — Department of Computer Science
+                    </p>
+                  </div>
 
-              {/* Paper Screenshot Preview */}
-              <div className="relative w-full h-56 rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
-                <Image
-                  src={getAssetPath("/Paper.png")}
-                  alt="Lawsuit AraRAG IEEE Xplore Publication"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                  <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                    <FiCheckCircle />
-                    <span>Peer-Reviewed & Indexed</span>
+                  {/* Paper Screenshot Preview */}
+                  <div className="relative w-full h-56 rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
+                    <Image
+                      src={getAssetPath("/Paper.png")}
+                      alt="Lawsuit AraRAG IEEE Xplore Publication"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 600px"
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                      <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                        <FiCheckCircle />
+                        <span>Peer-Reviewed & Indexed</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Abstract Snippet */}
+                  <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                    Addresses the critical gap in Arabic legal generative AI by architecting a specialized Retrieval-Augmented Generation (RAG) framework tailored for morphological complexity, right-to-left syntax, and domain-grounded citation enforcement.
+                  </p>
+                </div>
+
+                {/* Action link */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <MagneticButton strength={0.35}>
+                    <a
+                      href="https://linkedin.com/in/ahmad-balubaid/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2 transition-all block"
+                    >
+                      <FiExternalLink />
+                      <span>View IEEE Publication</span>
+                    </a>
+                  </MagneticButton>
+                  <span className="font-mono text-[11px] text-slate-400">
+                    DOI / Conference Indexed
                   </span>
                 </div>
               </div>
-
-              {/* Abstract Snippet */}
-              <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
-                Addresses the critical gap in Arabic legal generative AI by architecting a specialized Retrieval-Augmented Generation (RAG) framework tailored for morphological complexity, right-to-left syntax, and domain-grounded citation enforcement.
-              </p>
-            </div>
-
-            {/* Action link */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <a
-                href="https://linkedin.com/in/ahmad-balubaid/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2 transition-all"
-              >
-                <FiExternalLink />
-                <span>View IEEE Publication</span>
-              </a>
-              <span className="font-mono text-[11px] text-slate-400">
-                DOI / Conference Indexed
-              </span>
-            </div>
+            </TiltCard>
           </div>
 
           {/* Right: Research Team & LinkedIn Announcement Card */}
-          <div
-            ref={rightCardRef}
-            className="lg:col-span-6 liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between"
-          >
-            <div>
-              {/* Top Meta Badges */}
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-                <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#38bdf8] border border-[#38bdf8]/40 flex items-center gap-2">
-                  <FaLinkedin className="text-base text-[#38bdf8]" />
-                  <span>Research Spotlight & Team</span>
-                </span>
-                <span className="font-mono text-xs text-slate-400">
-                  Effat University • Saudi Arabia 🇸🇦
-                </span>
-              </div>
+          <div ref={rightCardRef} className="lg:col-span-6">
+            <TiltCard maxTilt={6} glowColor="rgba(56, 189, 248, 0.15)" className="h-full">
+              <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between h-full">
+                <div>
+                  {/* Top Meta Badges */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#38bdf8] border border-[#38bdf8]/40 flex items-center gap-2">
+                      <FaLinkedin className="text-base text-[#38bdf8]" />
+                      <TextScramble text="Research Spotlight & Team" />
+                    </span>
+                    <span className="font-mono text-xs text-slate-400">
+                      Effat University • Saudi Arabia 🇸🇦
+                    </span>
+                  </div>
 
-              {/* Research Team Photo */}
-              <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
-                <Image
-                  src={getAssetPath("/researchteam.jpg")}
-                  alt="Ahmad Balubaid and Research Team at ILTC 2026 Conference"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                  <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-slate-200 border border-white/20">
-                    23rd International Learning & Tech Conference (ILTC)
+                  {/* Research Team Photo */}
+                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900 border border-white/10 mb-6 group">
+                    <Image
+                      src={getAssetPath("/researchteam.jpg")}
+                      alt="Ahmad Balubaid and Research Team at ILTC 2026 Conference"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 600px"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                      <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-slate-200 border border-white/20">
+                        23rd International Learning & Tech Conference (ILTC)
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* LinkedIn Post Commentary Block */}
+                  <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 mb-6 relative">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FaLinkedin className="text-[#38bdf8] text-base" />
+                      <span className="font-mono text-[11px] uppercase tracking-wider text-white font-semibold">
+                        LinkedIn Research Announcement
+                      </span>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed italic mb-3">
+                      "Honored to announce that our research paper <span className="text-white font-medium not-italic">‘Lawsuit AraRAG: A Retrieval-Augmented Generation Framework for Arabic Legal Document Understanding and Hallucination Reduction’</span> has been officially published in IEEE Xplore after being presented at the 23rd International Learning and Technology Conference (ILTC 2026)."
+                    </p>
+
+                    <p className="text-xs text-slate-400 font-light leading-relaxed">
+                      "Immense gratitude to Dr. Passent ElKafrawy, Ahmad Hakim, Faisal Alkhalili, and Effat University for this milestone in empowering Arabic NLP and legal intelligence systems."
+                    </p>
+                  </div>
+                </div>
+
+                {/* LinkedIn profile link */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <MagneticButton strength={0.35}>
+                    <a
+                      href="https://linkedin.com/in/ahmad-balubaid/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#38bdf8] border border-white/15 flex items-center gap-2 transition-all block"
+                    >
+                      <FaLinkedin />
+                      <span>Connect on LinkedIn</span>
+                    </a>
+                  </MagneticButton>
+                  <span className="font-mono text-[11px] text-[#0df5c8]">
+                    #IEEE #AI #ArabicNLP #RAG
                   </span>
                 </div>
               </div>
-
-              {/* LinkedIn Post Commentary Block */}
-              <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 mb-6 relative">
-                <div className="flex items-center gap-2 mb-3">
-                  <FaLinkedin className="text-[#38bdf8] text-base" />
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-white font-semibold">
-                    LinkedIn Research Announcement
-                  </span>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed italic mb-3">
-                  "Honored to announce that our research paper <span className="text-white font-medium not-italic">‘Lawsuit AraRAG: A Retrieval-Augmented Generation Framework for Arabic Legal Document Understanding and Hallucination Reduction’</span> has been officially published in IEEE Xplore after being presented at the 23rd International Learning and Technology Conference (ILTC 2026)."
-                </p>
-
-                <p className="text-xs text-slate-400 font-light leading-relaxed">
-                  "Immense gratitude to Dr. Passent ElKafrawy, Ahmad Hakim, Faisal Alkhalili, and Effat University for this milestone in empowering Arabic NLP and legal intelligence systems."
-                </p>
-              </div>
-            </div>
-
-            {/* LinkedIn profile link */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <a
-                href="https://linkedin.com/in/ahmad-balubaid/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#38bdf8] border border-white/15 flex items-center gap-2 transition-all"
-              >
-                <FaLinkedin />
-                <span>Connect on LinkedIn</span>
-              </a>
-              <span className="font-mono text-[11px] text-[#0df5c8]">
-                #IEEE #AI #ArabicNLP #RAG
-              </span>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </div>

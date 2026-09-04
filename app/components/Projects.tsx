@@ -18,6 +18,9 @@ import {
 } from "react-icons/fi";
 import { HiSparkles } from "react-icons/hi";
 import { getAssetPath } from "../utils/assets";
+import TiltCard from "./TiltCard";
+import TextScramble from "./TextScramble";
+import MagneticButton from "./MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -291,106 +294,114 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <div
+            <TiltCard
               key={project.id}
-              className="project-card-item liquid-glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 group relative overflow-hidden"
+              maxTilt={7}
+              glowColor="rgba(13, 245, 200, 0.14)"
+              className="h-full"
             >
-              {/* Top Meta Bar */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#0df5c8] flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0df5c8]" />
-                    {project.category}
-                  </span>
-                  <span className="font-editorial italic text-3xl text-white/25 group-hover:text-[#0df5c8]/40 transition-colors">
-                    {project.number}
-                  </span>
-                </div>
+              <div className="project-card-item liquid-glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 group relative overflow-hidden h-full">
+                {/* Top Meta Bar */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-xs uppercase tracking-widest text-[#0df5c8] flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0df5c8]" />
+                      <TextScramble text={project.category} />
+                    </span>
+                    <span className="font-editorial italic text-3xl text-white/25 group-hover:text-[#0df5c8]/40 transition-colors">
+                      {project.number}
+                    </span>
+                  </div>
 
-                {/* Project Title */}
-                <h3 className="font-syne font-bold text-2xl sm:text-3xl text-white mb-2 group-hover:text-[#0df5c8] transition-colors">
-                  {project.title}
-                </h3>
-                <p className="font-mono text-xs text-slate-300 mb-4 font-light">
-                  {project.tagline}
-                </p>
+                  {/* Project Title */}
+                  <h3 className="font-syne font-bold text-2xl sm:text-3xl text-white mb-2 group-hover:text-[#0df5c8] transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="font-mono text-xs text-slate-300 mb-4 font-light">
+                    {project.tagline}
+                  </p>
 
-                {/* Project Image Preview */}
-                <div className="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/10 group-hover:border-[#0df5c8]/30 transition-colors flex items-center justify-center">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 600px"
-                    className={`object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${
-                      project.id === "labychecker" ? "object-contain p-6 bg-[#090d16]" : ""
-                    }`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-85" />
+                  {/* Project Image Preview */}
+                  <div className="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/10 group-hover:border-[#0df5c8]/30 transition-colors flex items-center justify-center">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 600px"
+                      className={`object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${
+                        project.id === "labychecker" ? "object-contain p-6 bg-[#090d16]" : ""
+                      }`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-85" />
 
-                  {/* Overlay Metrics Strip */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
-                    {project.metrics.map((metric, idx) => (
-                      <div
-                        key={idx}
-                        className="liquid-glass-pill px-3 py-1 text-center flex-1"
+                    {/* Overlay Metrics Strip */}
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                      {project.metrics.map((metric, idx) => (
+                        <div
+                          key={idx}
+                          className="liquid-glass-pill px-3 py-1 text-center flex-1"
+                        >
+                          <p className="font-mono text-[9px] uppercase tracking-wider text-slate-400">
+                            {metric.label}
+                          </p>
+                          <p className="font-syne font-bold text-xs text-white">
+                            {metric.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <p className="text-slate-300 text-xs sm:text-sm font-light leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="liquid-glass-pill px-2.5 py-1 text-[11px] font-mono text-slate-300 border border-white/10"
                       >
-                        <p className="font-mono text-[9px] uppercase tracking-wider text-slate-400">
-                          {metric.label}
-                        </p>
-                        <p className="font-syne font-bold text-xs text-white">
-                          {metric.value}
-                        </p>
-                      </div>
+                        {tag}
+                      </span>
                     ))}
                   </div>
                 </div>
 
-                <p className="text-slate-300 text-xs sm:text-sm font-light leading-relaxed mb-6">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="liquid-glass-pill px-2.5 py-1 text-[11px] font-mono text-slate-300 border border-white/10"
+                {/* Action Buttons */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                  <MagneticButton strength={0.3}>
+                    <button
+                      onClick={() => {
+                        setActiveModalProject(project);
+                        if (project.interactiveType === "rag") {
+                          simulateRagQuery("Saudi Labor Law: End of Service Gratuity calculation rules");
+                        }
+                      }}
+                      className="liquid-glass-pill px-4 py-2.5 bg-white/[0.06] hover:bg-[#0df5c8]/15 border border-white/15 hover:border-[#0df5c8]/50 text-white hover:text-[#0df5c8] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      <HiSparkles className="text-[#0df5c8]" />
+                      <span>Inspect Architecture</span>
+                    </button>
+                  </MagneticButton>
+
+                  <div className="flex items-center gap-2">
+                    <MagneticButton strength={0.4}>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-white hover:border-[#0df5c8]/40 transition-colors block"
+                        aria-label="GitHub Repository"
+                      >
+                        <SiGithub size={16} />
+                      </a>
+                    </MagneticButton>
+                  </div>
                 </div>
               </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-                <button
-                  onClick={() => {
-                    setActiveModalProject(project);
-                    if (project.interactiveType === "rag") {
-                      simulateRagQuery("Saudi Labor Law: End of Service Gratuity calculation rules");
-                    }
-                  }}
-                  className="liquid-glass-pill px-4 py-2.5 bg-white/[0.06] hover:bg-[#0df5c8]/15 border border-white/15 hover:border-[#0df5c8]/50 text-white hover:text-[#0df5c8] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer"
-                >
-                  <HiSparkles className="text-[#0df5c8]" />
-                  <span>Inspect Architecture</span>
-                </button>
-
-                <div className="flex items-center gap-2">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="liquid-glass-pill p-2.5 text-slate-300 hover:text-white hover:border-[#0df5c8]/40 transition-colors"
-                    aria-label="GitHub Repository"
-                  >
-                    <SiGithub size={16} />
-                  </a>
-                </div>
-              </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>
