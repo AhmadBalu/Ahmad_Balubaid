@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { sound } from "../utils/sound";
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -44,13 +45,19 @@ export default function CustomCursor() {
 
     const handleMouseEnter = () => {
       ringRef.current?.classList.add("active");
+      sound.playHover();
     };
 
     const handleMouseLeave = () => {
       ringRef.current?.classList.remove("active");
     };
 
+    const handleWindowClick = () => {
+      sound.playClick();
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("click", handleWindowClick);
     render();
 
     const addInteractiveListeners = () => {
@@ -71,6 +78,7 @@ export default function CustomCursor() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("click", handleWindowClick);
       cancelAnimationFrame(animFrameId);
       observer.disconnect();
     };

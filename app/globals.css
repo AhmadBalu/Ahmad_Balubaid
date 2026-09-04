@@ -210,3 +210,49 @@ body {
   font-family: var(--font-syne);
 }
 
+/* Audio Visualizer Equalizer */
+@keyframes eqBar {
+  0%, 100% { height: 3px; }
+  50% { height: 13px; }
+}
+
+.animate-eq-1 { animation: eqBar 0.6s ease-in-out infinite; }
+.animate-eq-2 { animation: eqBar 0.8s ease-in-out infinite 0.15s; }
+.animate-eq-3 { animation: eqBar 0.5s ease-in-out infinite 0.3s; }
+
+/* Architect Wireframe / Blueprint Mode Quirk */
+html.wireframe-mode {
+  background-image: 
+    linear-gradient(to right, rgba(13, 245, 200, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 245, 200, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+html.wireframe-mode * {
+  outline: 1px dashed rgba(13, 245, 200, 0.22) !important;
+}
+
+html.wireframe-mode .liquid-glass,
+html.wireframe-mode .liquid-glass-card {
+  border-color: rgba(13, 245, 200, 0.6) !important;
+  background: rgba(5, 7, 12, 0.9) !important;
+  box-shadow: 0 0 15px rgba(13, 245, 200, 0.2) !important;
+}
+
+html.wireframe-mode::after {
+  content: "SCHEMATIC BLUEPRINT MODE // SYSTEM TELEMETRY ACTIVE";
+  position: fixed;
+  bottom: 16px;
+  left: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #0df5c8;
+  background: rgba(5, 7, 12, 0.92);
+  border: 1px solid #0df5c8;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  z-index: 99999;
+  letter-spacing: 0.2em;
+  pointer-events: none;
+}
+

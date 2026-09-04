@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import ParticleNetwork from "./components/ParticleNetwork";
+import DesignQuirksDock from "./components/DesignQuirksDock";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <Stats />
       <Contact />
       <Footer />
+      <DesignQuirksDock />
     </main>
   );
 }
