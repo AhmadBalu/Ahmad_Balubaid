@@ -41,11 +41,12 @@ export default function Navbar() {
 
   const navItems = [
     { label: "About", href: "#about", index: "01" },
-    { label: "Artifacts", href: "#projects", index: "02" },
-    { label: "Research", href: "#research", index: "03" },
-    { label: "Capabilities", href: "#stack", index: "04" },
-    { label: "Chronicle", href: "#timeline", index: "05" },
-    { label: "Dispatch", href: "#contact", index: "06" },
+    { label: "3D Lab", href: "#holodeck", index: "02" },
+    { label: "Artifacts", href: "#projects", index: "03" },
+    { label: "Research", href: "#research", index: "04" },
+    { label: "Capabilities", href: "#stack", index: "05" },
+    { label: "Chronicle", href: "#timeline", index: "06" },
+    { label: "Dispatch", href: "#contact", index: "07" },
   ];
 
   return (

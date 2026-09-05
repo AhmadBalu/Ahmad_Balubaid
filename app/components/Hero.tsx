@@ -61,20 +61,15 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 pt-28 pb-16 overflow-hidden bg-[#05070c]"
     >
-      {/* Ambient Fluid Glow Blobs */}
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#0df5c8]/20 -top-32 -left-32 animate-[floatOrb_20s_infinite_alternate]" />
-      <div className="ambient-glow w-[600px] h-[600px] bg-[#38bdf8]/15 top-1/3 -right-48 animate-[floatReverse_22s_infinite_alternate]" />
-      <div className="ambient-glow w-[450px] h-[450px] bg-[#818cf8]/15 -bottom-24 left-1/4 animate-[floatOrb_18s_infinite_alternate]" />
-
-      {/* 3D Background Canvas */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-65">
-        <ThreeScene />
+      {/* 3D Interactive WebGL Canvas */}
+      <div className="absolute inset-0 z-0 opacity-85">
+        <ThreeScene interactive={true} />
       </div>
 
       {/* Hero Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center pointer-events-none">
         {/* Top Status & Telemetry Pill */}
-        <div className="hero-badge-top flex flex-wrap items-center justify-center gap-2 mb-8">
+        <div className="hero-badge-top pointer-events-auto flex flex-wrap items-center justify-center gap-2 mb-8">
           <div className="liquid-glass-pill px-4 py-1.5 flex items-center gap-2.5">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0df5c8] opacity-75"></span>
@@ -146,7 +141,7 @@ export default function Hero() {
         </div>
 
         {/* CTAs with Magnetic Pull */}
-        <div className="hero-cta-group flex flex-wrap items-center justify-center gap-4 mb-16">
+        <div className="hero-cta-group pointer-events-auto flex flex-wrap items-center justify-center gap-4 mb-16">
           <MagneticButton strength={0.35}>
             <a
               href="#projects"
@@ -171,7 +166,7 @@ export default function Hero() {
         {/* Liquid Glass Telemetry Cards Grid with 3D Tilt */}
         <div
           ref={badgesRef}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl"
+          className="pointer-events-auto grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl"
         >
           {/* Card 1 */}
           <TiltCard maxTilt={8} glowColor="rgba(13, 245, 200, 0.15)" className="h-full">

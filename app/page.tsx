@@ -3,8 +3,11 @@ import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MarqueeBar from "./components/MarqueeBar";
+import dynamic from "next/dynamic";
 import About from "./components/About";
 import Projects from "./components/Projects";
+
+const ThreeDLab = dynamic(() => import("./components/ThreeDLab"), { ssr: false });
 import ResearchPublication from "./components/ResearchPublication";
 import HorizontalScroll from "./components/HorizontalScroll";
 import TechStack from "./components/TechStack";
@@ -27,6 +30,7 @@ export default function Home() {
       <Hero />
       <MarqueeBar />
       <About />
+      <ThreeDLab />
       <Projects />
       <ResearchPublication />
       <HorizontalScroll />
