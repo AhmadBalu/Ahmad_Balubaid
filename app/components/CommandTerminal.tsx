@@ -117,7 +117,6 @@ export default function CommandTerminal({
   whoami       — Developer profile & academic telemetry
   paper        — IEEE Xplore AraRAG publication metadata
   projects     — Flagship engineering architectures
-  3d           — Engage interactive 3D WebGL Systems Holodeck
   ping         — Live HTTP round-trip latency benchmark
   wireframe    — Toggle architect schematic / wireframe mode
   matrix       — Initiate cyber glyph matrix rain
@@ -206,19 +205,6 @@ STATUS: Peer-Reviewed & Indexed`,
           type: "system",
           text: `Web Audio Synthesizer: ${isNowOn ? "ENABLED [Harmonics Active]" : "DISABLED [Muted]"}`,
         });
-        break;
-
-      case "3d":
-      case "holodeck":
-        newHistory.push({
-          type: "system",
-          text: "Engaging 3D WebGL Systems Holodeck...",
-        });
-        setTimeout(() => {
-          onClose();
-          const holodeckEl = document.getElementById("holodeck");
-          if (holodeckEl) holodeckEl.scrollIntoView({ behavior: "smooth" });
-        }, 400);
         break;
 
       case "sudo":
