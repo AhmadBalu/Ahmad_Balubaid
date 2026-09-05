@@ -1,151 +1,225 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Sphere, MeshDistortMaterial, Float, Ring } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
-function MouseParallaxRig() {
+// 1. Smooth Mouse Parallax Camera Rig
+function CameraRig() {
   const { camera, pointer } = useThree();
-  const vec = useMemo(() => new THREE.Vector3(), []);
+  const target = useMemo(() => new THREE.Vector3(), []);
 
   useFrame(() => {
-    // Smooth camera interpolation towards mouse pointer
-    vec.set(pointer.x * 0.8, pointer.y * 0.6, camera.position.z);
-    camera.position.lerp(vec, 0.05);
+    // Subtle tilt following pointer
+    target.set(pointer.x * 0.7, pointer.y * 0.5, 5.5);
+    camera.position.lerp(target, 0.04);
     camera.lookAt(0, 0, 0);
   });
 
   return null;
 }
 
-function QuantumNeuralCore() {
-  const innerMeshRef = useRef<THREE.Mesh>(null!);
-  const outerWireRef = useRef<THREE.Mesh>(null!);
-  const ring1Ref = useRef<THREE.Mesh>(null!);
-  const ring2Ref = useRef<THREE.Mesh>(null!);
+// 2. Faceted Crystalline Core (Geometric Octahedron + Wireframe Cage)
+function CrystalCore() {
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const wireRef = useRef<THREE.Mesh>(null!);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    if (coreRef.current) {
+      coreRef.current.rotation.y = t * 0.15;
+      coreRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
+    }
+    if (wireRef.current) {
+      wireRef.current.rotation.y = -t * 0.1;
+      wireRef.current.rotation.z = Math.cos(t * 0.12) * 0.25;
+    }
+  });
+
+  return (
+    <group>
+      {/* Inner Obsidian Crystal Core */}
+      <mesh ref={coreRef}>
+        <octahedronGeometry args={[1.05, 0]} />
+        <meshPhysicalMaterial
+          color="#060d17"
+          emissive="#0df5c8"
+          emissiveIntensity={0.25}
+          roughness={0.12}
+          metalness={0.9}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
+          reflectivity={0.9}
+        />
+      </mesh>
+
+      {/* Outer Precision Wireframe Cage */}
+      <mesh ref={wireRef}>
+        <icosahedronGeometry args={[1.4, 1]} />
+        <meshStandardMaterial
+          color="#38bdf8"
+          emissive="#0df5c8"
+          emissiveIntensity={0.4}
+          wireframe
+          transparent
+          opacity={0.35}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+// 3. Kinetic Gyroscopic Armillary Rings with Orbiting Data Photons
+function GyroscopeRings() {
+  const ringX = useRef<THREE.Group>(null!);
+  const ringY = useRef<THREE.Group>(null!);
+  const ringZ = useRef<THREE.Group>(null!);
+  const photon1 = useRef<THREE.Mesh>(null!);
+  const photon2 = useRef<THREE.Mesh>(null!);
+  const photon3 = useRef<THREE.Mesh>(null!);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
 
-    if (innerMeshRef.current) {
-      innerMeshRef.current.rotation.y = t * 0.12;
-      innerMeshRef.current.rotation.x = Math.sin(t * 0.08) * 0.25;
+    if (ringX.current) {
+      ringX.current.rotation.x = t * 0.22;
+      ringX.current.rotation.y = Math.sin(t * 0.15) * 0.3;
+    }
+    if (ringY.current) {
+      ringY.current.rotation.y = t * 0.18;
+      ringY.current.rotation.z = Math.cos(t * 0.2) * 0.3;
+    }
+    if (ringZ.current) {
+      ringZ.current.rotation.z = -t * 0.14;
+      ringZ.current.rotation.x = Math.PI / 4 + Math.sin(t * 0.1) * 0.2;
     }
 
-    if (outerWireRef.current) {
-      outerWireRef.current.rotation.y = -t * 0.09;
-      outerWireRef.current.rotation.z = Math.cos(t * 0.07) * 0.2;
-    }
+    // Orbiting data photons along the ring paths
+    const radius1 = 2.05;
+    const radius2 = 2.4;
+    const radius3 = 2.75;
 
-    if (ring1Ref.current) {
-      ring1Ref.current.rotation.x = Math.PI / 2.8 + Math.sin(t * 0.2) * 0.1;
-      ring1Ref.current.rotation.z = t * 0.15;
+    if (photon1.current) {
+      photon1.current.position.set(
+        Math.cos(t * 1.5) * radius1,
+        Math.sin(t * 1.5) * radius1,
+        0
+      );
     }
-
-    if (ring2Ref.current) {
-      ring2Ref.current.rotation.x = -Math.PI / 3 + Math.cos(t * 0.25) * 0.12;
-      ring2Ref.current.rotation.y = -t * 0.18;
+    if (photon2.current) {
+      photon2.current.position.set(
+        Math.cos(-t * 1.2) * radius2,
+        0,
+        Math.sin(-t * 1.2) * radius2
+      );
+    }
+    if (photon3.current) {
+      photon3.current.position.set(
+        0,
+        Math.cos(t * 0.9) * radius3,
+        Math.sin(t * 0.9) * radius3
+      );
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.8} floatIntensity={1}>
-      <group>
-        {/* Inner Liquid Core */}
-        <Sphere args={[1.5, 64, 64]} ref={innerMeshRef}>
-          <MeshDistortMaterial
-            color="#07131e"
+    <group>
+      {/* Primary Ring (Alpha) */}
+      <group ref={ringX}>
+        <mesh>
+          <torusGeometry args={[2.05, 0.013, 16, 120]} />
+          <meshStandardMaterial
+            color="#0df5c8"
             emissive="#0df5c8"
-            emissiveIntensity={0.25}
-            distort={0.45}
-            speed={2.2}
-            roughness={0.12}
+            emissiveIntensity={0.65}
             metalness={0.9}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
+            roughness={0.1}
           />
-        </Sphere>
+        </mesh>
+        {/* Orbiting Photon 1 */}
+        <mesh ref={photon1}>
+          <sphereGeometry args={[0.038, 16, 16]} />
+          <meshBasicMaterial color="#ffffff" />
+        </mesh>
+      </group>
 
-        {/* Outer Geometric Wireframe Lattice */}
-        <mesh ref={outerWireRef}>
-          <icosahedronGeometry args={[2.0, 1]} />
+      {/* Secondary Ring (Beta) */}
+      <group ref={ringY}>
+        <mesh>
+          <torusGeometry args={[2.4, 0.011, 16, 120]} />
           <meshStandardMaterial
             color="#38bdf8"
             emissive="#38bdf8"
-            emissiveIntensity={0.3}
-            wireframe
-            transparent
-            opacity={0.35}
+            emissiveIntensity={0.55}
+            metalness={0.9}
+            roughness={0.1}
           />
         </mesh>
-
-        {/* Quantum Orbit Ring 1 */}
-        <mesh ref={ring1Ref}>
-          <torusGeometry args={[2.5, 0.015, 16, 100]} />
-          <meshBasicMaterial color="#0df5c8" transparent opacity={0.5} />
-        </mesh>
-
-        {/* Quantum Orbit Ring 2 */}
-        <mesh ref={ring2Ref}>
-          <torusGeometry args={[2.8, 0.012, 16, 100]} />
-          <meshBasicMaterial color="#818cf8" transparent opacity={0.4} />
+        {/* Orbiting Photon 2 */}
+        <mesh ref={photon2}>
+          <sphereGeometry args={[0.034, 16, 16]} />
+          <meshBasicMaterial color="#38bdf8" />
         </mesh>
       </group>
-    </Float>
+
+      {/* Tertiary Outer Ring (Gamma) */}
+      <group ref={ringZ}>
+        <mesh>
+          <torusGeometry args={[2.75, 0.009, 16, 120]} />
+          <meshStandardMaterial
+            color="#818cf8"
+            emissive="#818cf8"
+            emissiveIntensity={0.45}
+            metalness={0.9}
+            roughness={0.2}
+            transparent
+            opacity={0.65}
+          />
+        </mesh>
+        {/* Orbiting Photon 3 */}
+        <mesh ref={photon3}>
+          <sphereGeometry args={[0.03, 16, 16]} />
+          <meshBasicMaterial color="#0df5c8" />
+        </mesh>
+      </group>
+    </group>
   );
 }
 
-function ConstellationField() {
-  const count = 450;
-  const { positions, colors } = useMemo(() => {
+// 4. Subtle Pinprick Star Field
+function PrecisionStarField() {
+  const count = 300;
+  const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
-
-    const color1 = new THREE.Color("#0df5c8");
-    const color2 = new THREE.Color("#38bdf8");
-    const color3 = new THREE.Color("#818cf8");
-
     for (let i = 0; i < count; i++) {
       const idx = i * 3;
-      pos[idx] = (Math.random() - 0.5) * 18;
-      pos[idx + 1] = (Math.random() - 0.5) * 18;
-      pos[idx + 2] = (Math.random() - 0.5) * 14;
-
-      const mixed =
-        i % 3 === 0 ? color1 : i % 3 === 1 ? color2 : color3;
-      col[idx] = mixed.r;
-      col[idx + 1] = mixed.g;
-      col[idx + 2] = mixed.b;
+      pos[idx] = (Math.random() - 0.5) * 16;
+      pos[idx + 1] = (Math.random() - 0.5) * 16;
+      pos[idx + 2] = (Math.random() - 0.5) * 12;
     }
-    return { positions: pos, colors: col };
+    return pos;
   }, []);
 
-  const pointsRef = useRef<THREE.Points>(null!);
-
+  const ref = useRef<THREE.Points>(null!);
   useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.015;
-      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.05;
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.01;
     }
   });
 
   return (
-    <points ref={pointsRef}>
+    <points ref={ref}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
           args={[positions, 3]}
         />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
-        vertexColors
+        size={0.025}
+        color="#0df5c8"
         transparent
-        opacity={0.6}
+        opacity={0.4}
         sizeAttenuation
       />
     </points>
@@ -156,18 +230,23 @@ export default function ThreeScene() {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 5.8], fov: 45 }}
+        camera={{ position: [0, 0, 5.5], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 4]} intensity={2.0} color="#0df5c8" />
-        <directionalLight position={[-5, -4, -2]} intensity={1.5} color="#38bdf8" />
-        <pointLight position={[0, 0, 3]} intensity={1.2} color="#818cf8" />
-        
-        <MouseParallaxRig />
-        <QuantumNeuralCore />
-        <ConstellationField />
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 6, 4]} intensity={2.2} color="#0df5c8" />
+        <directionalLight position={[-5, -4, -3]} intensity={1.6} color="#38bdf8" />
+        <pointLight position={[0, 0, 2.5]} intensity={1.2} color="#818cf8" />
+
+        <CameraRig />
+
+        <Float speed={1.6} rotationIntensity={0.4} floatIntensity={0.6}>
+          <CrystalCore />
+          <GyroscopeRings />
+        </Float>
+
+        <PrecisionStarField />
       </Canvas>
     </div>
   );
