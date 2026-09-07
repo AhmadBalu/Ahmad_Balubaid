@@ -6,37 +6,16 @@ import TextScramble from "./TextScramble";
 import MagneticButton from "./MagneticButton";
 
 export default function Navbar() {
-  const [saudiTime, setSaudiTime] = useState<string>("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Saudi Arabia is UTC+3 (Asia/Riyadh)
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Riyadh",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      setSaudiTime(new Intl.DateTimeFormat("en-GB", options).format(now));
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
@@ -85,15 +64,8 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right Info: Live Saudi Clock & Resume CTA */}
+        {/* Right Info: Resume CTA & Mobile Trigger */}
         <div className="flex items-center gap-3">
-          {/* Saudi Arabia Live Clock Badge */}
-          <div className="hidden sm:flex liquid-glass-pill px-3.5 py-2 items-center gap-2 font-mono text-[11px] text-slate-300">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
-            <span className="text-slate-400">AST (UTC+3)</span>
-            <span className="text-[#0df5c8] font-medium tracking-widest">{saudiTime || "16:00:00"}</span>
-          </div>
-
           {/* Direct Resume CTA */}
           <MagneticButton strength={0.35}>
             <a
@@ -132,8 +104,8 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-3 border-t border-white/10 flex items-center justify-between px-2 font-mono text-[10px] text-slate-400">
-              <span>RIYADH / JEDDAH</span>
-              <span className="text-[#0df5c8]">{saudiTime} AST</span>
+              <span>ENGINEER & RESEARCHER</span>
+              <span className="text-[#0df5c8]">PORTFOLIO // 2026</span>
             </div>
           </nav>
         </div>

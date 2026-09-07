@@ -16,13 +16,12 @@ function DeskModel() {
         child.receiveShadow = true;
         const mesh = child as THREE.Mesh;
         const mat = mesh.material as THREE.MeshStandardMaterial;
-        if (mat && (mat.name === "Screen" || mat.name === "screen.002")) {
-          // Enhance screen luminosity so the embedded photo is clearly visible and backlit
-          if (mat.map) {
-            mat.emissiveMap = mat.map;
-            mat.emissive = new THREE.Color("#ffffff");
-            mat.emissiveIntensity = 0.4;
-          }
+        if (mat && mat.name === "Screen") {
+          // Keep Screen emissive at black so the embedded image texture displays with true colors and zero white blowout
+          mat.emissive = new THREE.Color("#000000");
+          mat.emissiveIntensity = 0;
+          mat.roughness = 0.6; // Soft matte screen surface to prevent harsh specular white glare
+          mat.needsUpdate = true;
         }
       }
     });
@@ -104,21 +103,30 @@ export default function ThreeScene() {
       onContextMenu={(e) => e.preventDefault()}
     >
       <Canvas
-        camera={{ position: [0, 0.8, 5.8], fov: 45 }}
+        camera={{ position: [0, 0.75, 5.6], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={1.3} />
-        <directionalLight position={[0, 5, 6]} intensity={2.8} color="#ffffff" />
-        <directionalLight position={[-6, 4, 3]} intensity={1.6} color="#0df5c8" />
-        <directionalLight position={[6, 4, 3]} intensity={1.4} color="#38bdf8" />
-        <pointLight position={[0, 1.2, 3.5]} intensity={1.8} color="#ffffff" />
+        <ambientLight intensity={0.75} />
+        <directionalLight position={[5, 6, 4]} intensity={1.8} color="#ffffff" />
+        <directionalLight position={[-5, 3, 2]} intensity={1.2} color="#0df5c8" />
+        <directionalLight position={[5, -2, -3]} intensity={1.0} color="#38bdf8" />
+        <pointLight position={[0, 2.5, 3]} intensity={0.6} color="#ffffff" />
 
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          rotateSpeed={0.8}
-          dampingFactor={0.06}
+          enableDamping={true}
+          dampingFactor={0.018}
+          rotateSpeed={1.25}
+          minPolarAngle={Math.PI / 4}
+          maxPolarAngle={Math.PI / 2 + 0.12}
+          mouseButtons={{
+            LEFT: THREE.MOUSE.ROTATE,
+          }}
+          touches={{
+            ONE: THREE.TOUCH.ROTATE,
+          }}
         />
 
         <Suspense fallback={null}>

@@ -11,11 +11,9 @@ interface TerminalHistoryItem {
 export default function CommandTerminal({
   isOpen,
   onClose,
-  onToggleWireframe,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onToggleWireframe?: () => void;
 }) {
   const [inputVal, setInputVal] = useState("");
   const [history, setHistory] = useState<TerminalHistoryItem[]>([
@@ -118,7 +116,6 @@ export default function CommandTerminal({
   paper        — IEEE Xplore AraRAG publication metadata
   projects     — Flagship engineering architectures
   ping         — Live HTTP round-trip latency benchmark
-  wireframe    — Toggle architect schematic / wireframe mode
   matrix       — Initiate cyber glyph matrix rain
   sound        — Toggle Web Audio procedural synthesizer
   sudo hire    — Dispatch direct recruitment transmission
@@ -133,7 +130,7 @@ export default function CommandTerminal({
           text: `NAME: Ahmad Balubaid
 ROLE: AI Systems Architect & Full-Stack Engineer
 INSTITUTION: Effat University (Dept. of Computer Science)
-LOCATION: Saudi Arabia 🇸🇦 (21.54° N, 39.17° E)
+LOCATION: Saudi Arabia 🇸🇦
 FOCUS: Applied RAG, LLM Hallucination Reduction, Clinical ML`,
         });
         break;
@@ -153,7 +150,7 @@ STATUS: Peer-Reviewed & Indexed`,
           type: "output",
           text: `01 // LabyChecker: Minecraft Cross-Network Telemetry (18+ Servers, Cloudflare Pool)
 02 // Lawsuit AraRAG: Legal Document Understanding (IEEE Xplore, 94.2% Acc)
-03 // Clinical Complication Predictor: MI Cardiology Model (0.89 ROC-AUC)
+03 // Clinical Outcome Prediction for MI Complications: ML Model (0.89 ROC-AUC)
 04 // Nektax Systems: High-Concurrency Multiplayer Network (3,000+ Users)
 05 // Academic Performance Engine: Full-Stack Predictive Platform (Next.js + Prisma)`,
         });
@@ -180,16 +177,6 @@ STATUS: Peer-Reviewed & Indexed`,
           ]);
         }
         return;
-
-      case "wireframe":
-        if (onToggleWireframe) {
-          onToggleWireframe();
-          newHistory.push({
-            type: "system",
-            text: "Architect Wireframe / Schematic mode toggled.",
-          });
-        }
-        break;
 
       case "matrix":
         setMatrixActive(true);

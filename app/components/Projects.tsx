@@ -34,7 +34,7 @@ interface ProjectItem {
   metrics: { label: string; value: string }[];
   tags: string[];
   image: string;
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   interactiveType: "labychecker" | "rag" | "clinical" | "infrastructure" | "stack";
   deepDive: {
@@ -68,7 +68,7 @@ const projects: ProjectItem[] = [
       "StarlightSkins API",
     ],
     image: getAssetPath("/labymod.jpg"),
-    githubUrl: "https://github.com/AhmadBalu",
+    liveUrl: "https://laby-checker.vercel.app/",
     interactiveType: "labychecker",
     deepDive: {
       problem:
@@ -116,7 +116,7 @@ const projects: ProjectItem[] = [
     id: "clinical-prediction",
     number: "03",
     category: "HEALTHCARE MACHINE LEARNING",
-    title: "Clinical Complication Predictor",
+    title: "Clinical Outcome Prediction for Myocardial Infarction Complications",
     tagline: "Supervised ML model predicting myocardial infarction complications",
     description:
       "Developed an end-to-end clinical machine learning pipeline analyzing multidimensional patient biomarker telemetry to predict secondary cardiac complications with explainable feature importance.",
@@ -127,7 +127,7 @@ const projects: ProjectItem[] = [
     ],
     tags: ["Python", "Scikit-Learn", "XGBoost", "Clinical ML", "Data Science", "Pandas"],
     image: getAssetPath("/hospital.jpg"),
-    githubUrl: "https://github.com/AhmadBalu",
+    githubUrl: "https://github.com/AhmadBalu/CS4082-Machine-Learning-Labs/blob/main/Project/Phase%205/MLReport.pdf",
     interactiveType: "clinical",
     deepDive: {
       problem: "Hospital telemetry often misses early indicators of post-infarction shock or arrhythmias in acute coronary care units.",
@@ -154,7 +154,7 @@ const projects: ProjectItem[] = [
     ],
     tags: ["Java", "Linux Admin", "Spigot/Paper API", "Anti-Bot Heuristics", "MySQL", "Docker"],
     image: getAssetPath("/nektax.png"),
-    githubUrl: "https://github.com/AhmadBalu",
+    liveUrl: "https://nektax.net/",
     interactiveType: "infrastructure",
     deepDive: {
       problem: "High-traffic multiplayer networks experience coordinated DDoS proxy joins, chat spamming, and server memory leakage.",
@@ -389,13 +389,18 @@ export default function Projects() {
                   <div className="flex items-center gap-2">
                     <MagneticButton strength={0.4}>
                       <a
-                        href={project.githubUrl}
+                        href={project.liveUrl || project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-white hover:border-[#0df5c8]/40 transition-colors block"
-                        aria-label="GitHub Repository"
+                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-[#0df5c8] hover:border-[#0df5c8]/50 transition-colors block"
+                        aria-label={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
+                        title={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
                       >
-                        <SiGithub size={16} />
+                        {project.liveUrl ? (
+                          <FiExternalLink size={16} className="text-[#0df5c8]" />
+                        ) : (
+                          <SiGithub size={16} />
+                        )}
                       </a>
                     </MagneticButton>
                   </div>
@@ -651,15 +656,31 @@ export default function Projects() {
 
             {/* Modal Footer */}
             <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <a
-                href={activeModalProject.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2"
-              >
-                <SiGithub />
-                <span>View Source on GitHub</span>
-              </a>
+              {activeModalProject.liveUrl ? (
+                <a
+                  href={activeModalProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2"
+                >
+                  <FiExternalLink className="text-[#0df5c8]" />
+                  <span>
+                    {activeModalProject.id === "labychecker"
+                      ? "Launch LabyChecker App"
+                      : "Visit Nektax Network"}
+                  </span>
+                </a>
+              ) : (
+                <a
+                  href={activeModalProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2"
+                >
+                  <SiGithub />
+                  <span>View Source on GitHub</span>
+                </a>
+              )}
 
               <button
                 onClick={() => setActiveModalProject(null)}
