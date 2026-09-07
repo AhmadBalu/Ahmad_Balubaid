@@ -14,22 +14,24 @@ function DeskModel() {
       if ((child as THREE.Mesh).isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
+        const mesh = child as THREE.Mesh;
+        const mat = mesh.material as THREE.MeshStandardMaterial;
+        if (mat && (mat.name === "Screen" || mat.name === "screen.002")) {
+          // Enhance screen luminosity so the embedded photo is clearly visible and backlit
+          if (mat.map) {
+            mat.emissiveMap = mat.map;
+            mat.emissive = new THREE.Color("#ffffff");
+            mat.emissiveIntensity = 0.4;
+          }
+        }
       }
     });
   }, [scene]);
 
-  useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    if (groupRef.current) {
-      // Gentle cinematic rotation & floating sway
-      groupRef.current.rotation.y = -0.45 + Math.sin(t * 0.22) * 0.18;
-      groupRef.current.rotation.x = 0.18 + Math.sin(t * 0.18) * 0.04;
-    }
-  });
-
   return (
-    <Float speed={1.6} rotationIntensity={0.2} floatIntensity={0.35}>
-      <group ref={groupRef} position={[0, -0.25, 0]}>
+    <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.25}>
+      {/* -1.409 rad (-80.7 deg) rotates the model so the monitor and chair face directly towards the camera */}
+      <group ref={groupRef} position={[0, -0.22, 0]} rotation={[0.04, -1.409, 0]}>
         <Center>
           <primitive object={scene} scale={0.38} />
         </Center>
@@ -97,23 +99,25 @@ function ConstellationField() {
 
 export default function ThreeScene() {
   return (
-    <div className="w-full h-full cursor-grab active:cursor-grabbing select-none">
+    <div
+      className="w-full h-full cursor-grab active:cursor-grabbing select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <Canvas
         camera={{ position: [0, 0.8, 5.8], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[6, 8, 6]} intensity={2.6} color="#ffffff" />
-        <directionalLight position={[-6, 4, -3]} intensity={1.6} color="#0df5c8" />
-        <pointLight position={[0, 2.5, 3]} intensity={1.5} color="#38bdf8" />
-        <pointLight position={[0, -2, -2]} intensity={0.8} color="#818cf8" />
+        <ambientLight intensity={1.3} />
+        <directionalLight position={[0, 5, 6]} intensity={2.8} color="#ffffff" />
+        <directionalLight position={[-6, 4, 3]} intensity={1.6} color="#0df5c8" />
+        <directionalLight position={[6, 4, 3]} intensity={1.4} color="#38bdf8" />
+        <pointLight position={[0, 1.2, 3.5]} intensity={1.8} color="#ffffff" />
 
         <OrbitControls
           enableZoom={false}
-          enablePan={true}
+          enablePan={false}
           rotateSpeed={0.8}
-          panSpeed={0.8}
           dampingFactor={0.06}
         />
 
