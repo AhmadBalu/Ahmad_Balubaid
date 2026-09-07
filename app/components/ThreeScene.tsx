@@ -1,23 +1,9 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useGLTF, Center, Float } from "@react-three/drei";
+import { useGLTF, Center, Float, OrbitControls } from "@react-three/drei";
 import { Suspense, useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 import { getAssetPath } from "../utils/assets";
-
-function MouseParallaxRig() {
-  const { camera, pointer } = useThree();
-  const vec = useMemo(() => new THREE.Vector3(), []);
-
-  useFrame(() => {
-    // Smooth camera interpolation towards mouse pointer
-    vec.set(pointer.x * 0.8, pointer.y * 0.5 + 0.6, 5.8);
-    camera.position.lerp(vec, 0.045);
-    camera.lookAt(0, 0, 0);
-  });
-
-  return null;
-}
 
 function DeskModel() {
   const { scene } = useGLTF(getAssetPath("/desk1.glb"));
@@ -45,7 +31,7 @@ function DeskModel() {
     <Float speed={1.6} rotationIntensity={0.2} floatIntensity={0.35}>
       <group ref={groupRef} position={[0, -0.25, 0]}>
         <Center>
-          <primitive object={scene} scale={0.23} />
+          <primitive object={scene} scale={0.38} />
         </Center>
       </group>
     </Float>
@@ -111,19 +97,26 @@ function ConstellationField() {
 
 export default function ThreeScene() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full cursor-grab active:cursor-grabbing select-none">
       <Canvas
-        camera={{ position: [0, 0.6, 5.8], fov: 45 }}
+        camera={{ position: [0, 0.8, 5.8], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={1.1} />
+        <ambientLight intensity={1.2} />
         <directionalLight position={[6, 8, 6]} intensity={2.6} color="#ffffff" />
         <directionalLight position={[-6, 4, -3]} intensity={1.6} color="#0df5c8" />
         <pointLight position={[0, 2.5, 3]} intensity={1.5} color="#38bdf8" />
         <pointLight position={[0, -2, -2]} intensity={0.8} color="#818cf8" />
 
-        <MouseParallaxRig />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={true}
+          rotateSpeed={0.8}
+          panSpeed={0.8}
+          dampingFactor={0.06}
+        />
+
         <Suspense fallback={null}>
           <DeskModel />
         </Suspense>
