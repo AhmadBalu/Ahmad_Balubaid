@@ -1,8 +1,9 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Sphere, MeshDistortMaterial, Float, Ring } from "@react-three/drei";
-import { useRef, useMemo } from "react";
+import { useGLTF, Center, Float } from "@react-three/drei";
+import { Suspense, useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
+import { getAssetPath } from "../utils/assets";
 
 function MouseParallaxRig() {
   const { camera, pointer } = useThree();
@@ -10,93 +11,49 @@ function MouseParallaxRig() {
 
   useFrame(() => {
     // Smooth camera interpolation towards mouse pointer
-    vec.set(pointer.x * 0.8, pointer.y * 0.6, camera.position.z);
-    camera.position.lerp(vec, 0.05);
+    vec.set(pointer.x * 0.8, pointer.y * 0.5 + 0.6, 5.8);
+    camera.position.lerp(vec, 0.045);
     camera.lookAt(0, 0, 0);
   });
 
   return null;
 }
 
-function QuantumNeuralCore() {
-  const innerMeshRef = useRef<THREE.Mesh>(null!);
-  const outerWireRef = useRef<THREE.Mesh>(null!);
-  const ring1Ref = useRef<THREE.Mesh>(null!);
-  const ring2Ref = useRef<THREE.Mesh>(null!);
+function DeskModel() {
+  const { scene } = useGLTF(getAssetPath("/desk1.glb"));
+  const groupRef = useRef<THREE.Group>(null!);
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+  }, [scene]);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-
-    if (innerMeshRef.current) {
-      innerMeshRef.current.rotation.y = t * 0.12;
-      innerMeshRef.current.rotation.x = Math.sin(t * 0.08) * 0.25;
-    }
-
-    if (outerWireRef.current) {
-      outerWireRef.current.rotation.y = -t * 0.09;
-      outerWireRef.current.rotation.z = Math.cos(t * 0.07) * 0.2;
-    }
-
-    if (ring1Ref.current) {
-      ring1Ref.current.rotation.x = Math.PI / 2.8 + Math.sin(t * 0.2) * 0.1;
-      ring1Ref.current.rotation.z = t * 0.15;
-    }
-
-    if (ring2Ref.current) {
-      ring2Ref.current.rotation.x = -Math.PI / 3 + Math.cos(t * 0.25) * 0.12;
-      ring2Ref.current.rotation.y = -t * 0.18;
+    if (groupRef.current) {
+      // Gentle cinematic rotation & floating sway
+      groupRef.current.rotation.y = -0.45 + Math.sin(t * 0.22) * 0.18;
+      groupRef.current.rotation.x = 0.18 + Math.sin(t * 0.18) * 0.04;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.8} floatIntensity={1}>
-      <group>
-        {/* Inner Liquid Core */}
-        <Sphere args={[1.5, 64, 64]} ref={innerMeshRef}>
-          <MeshDistortMaterial
-            color="#07131e"
-            emissive="#0df5c8"
-            emissiveIntensity={0.25}
-            distort={0.45}
-            speed={2.2}
-            roughness={0.12}
-            metalness={0.9}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </Sphere>
-
-        {/* Outer Geometric Wireframe Lattice */}
-        <mesh ref={outerWireRef}>
-          <icosahedronGeometry args={[2.0, 1]} />
-          <meshStandardMaterial
-            color="#38bdf8"
-            emissive="#38bdf8"
-            emissiveIntensity={0.3}
-            wireframe
-            transparent
-            opacity={0.35}
-          />
-        </mesh>
-
-        {/* Quantum Orbit Ring 1 */}
-        <mesh ref={ring1Ref}>
-          <torusGeometry args={[2.5, 0.015, 16, 100]} />
-          <meshBasicMaterial color="#0df5c8" transparent opacity={0.5} />
-        </mesh>
-
-        {/* Quantum Orbit Ring 2 */}
-        <mesh ref={ring2Ref}>
-          <torusGeometry args={[2.8, 0.012, 16, 100]} />
-          <meshBasicMaterial color="#818cf8" transparent opacity={0.4} />
-        </mesh>
+    <Float speed={1.6} rotationIntensity={0.2} floatIntensity={0.35}>
+      <group ref={groupRef} position={[0, -0.25, 0]}>
+        <Center>
+          <primitive object={scene} scale={0.23} />
+        </Center>
       </group>
     </Float>
   );
 }
 
 function ConstellationField() {
-  const count = 450;
+  const count = 350;
   const { positions, colors } = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
@@ -124,8 +81,8 @@ function ConstellationField() {
 
   useFrame((state) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.015;
-      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.05;
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.012;
+      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.04;
     }
   });
 
@@ -142,10 +99,10 @@ function ConstellationField() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
+        size={0.035}
         vertexColors
         transparent
-        opacity={0.6}
+        opacity={0.5}
         sizeAttenuation
       />
     </points>
@@ -156,19 +113,24 @@ export default function ThreeScene() {
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 5.8], fov: 45 }}
+        camera={{ position: [0, 0.6, 5.8], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 4]} intensity={2.0} color="#0df5c8" />
-        <directionalLight position={[-5, -4, -2]} intensity={1.5} color="#38bdf8" />
-        <pointLight position={[0, 0, 3]} intensity={1.2} color="#818cf8" />
-        
+        <ambientLight intensity={1.1} />
+        <directionalLight position={[6, 8, 6]} intensity={2.6} color="#ffffff" />
+        <directionalLight position={[-6, 4, -3]} intensity={1.6} color="#0df5c8" />
+        <pointLight position={[0, 2.5, 3]} intensity={1.5} color="#38bdf8" />
+        <pointLight position={[0, -2, -2]} intensity={0.8} color="#818cf8" />
+
         <MouseParallaxRig />
-        <QuantumNeuralCore />
+        <Suspense fallback={null}>
+          <DeskModel />
+        </Suspense>
         <ConstellationField />
       </Canvas>
     </div>
   );
 }
+
+useGLTF.preload(getAssetPath("/desk1.glb"));
