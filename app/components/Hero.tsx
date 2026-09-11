@@ -153,12 +153,6 @@ export default function Hero() {
           </MagneticButton>
         </div>
 
-        {/* Subtle Fidget Hint */}
-        <div className="hero-subtext pointer-events-none">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400/80 liquid-glass-subtle px-3.5 py-1 rounded-full border border-white/10">
-            Click & Drag Anywhere to Spin Desk
-          </span>
-        </div>
       </div>
 
       {/* Bottom Architectural Scroll Cue */}

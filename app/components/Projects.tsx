@@ -99,7 +99,7 @@ const projects: ProjectItem[] = [
     ],
     tags: ["IEEE Publication", "Python", "LangChain", "Arabic NLP", "Vector DB", "RAG", "Embeddings"],
     image: getAssetPath("/Paper.png"),
-    githubUrl: "https://github.com/AhmadBalu",
+    liveUrl: "https://doi.org/10.1109/LT68265.2026.11592520",
     interactiveType: "rag",
     deepDive: {
       problem: "Legal document synthesis in Arabic struggles with morphological variations, section hierarchy loss, and right-to-left statutory cross-references.",

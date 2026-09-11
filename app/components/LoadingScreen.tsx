@@ -11,7 +11,13 @@ export default function LoadingScreen() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => setIsLoading(false), 300);
+          setTimeout(() => {
+            setIsLoading(false);
+            if (typeof window !== "undefined") {
+              (window as unknown as { __PORTFOLIO_LOADED__?: boolean }).__PORTFOLIO_LOADED__ = true;
+              window.dispatchEvent(new CustomEvent("portfolio:page-loaded"));
+            }
+          }, 300);
           return 100;
         }
         return prev + Math.floor(Math.random() * 20) + 10;

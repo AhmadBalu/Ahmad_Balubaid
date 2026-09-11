@@ -1,9 +1,13 @@
 "use client";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Center, Float, OrbitControls } from "@react-three/drei";
 import { Suspense, useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
+import { gsap } from "gsap";
 import { getAssetPath } from "../utils/assets";
+
+const TARGET_Y = -1.409; // Monitor and chair facing directly forward towards the camera
+const INITIAL_Y = TARGET_Y - Math.PI / 2; // 45 degrees offset showing the right profile of the desk setup
 
 function DeskModel() {
   const { scene } = useGLTF(getAssetPath("/desk1.glb"));
@@ -27,10 +31,53 @@ function DeskModel() {
     });
   }, [scene]);
 
+  useEffect(() => {
+    if (!groupRef.current) return;
+
+    let tween: gsap.core.Tween | null = null;
+
+    const startEntranceAnimation = () => {
+      if (tween || !groupRef.current) return;
+      groupRef.current.rotation.y = INITIAL_Y;
+      tween = gsap.to(groupRef.current.rotation, {
+        y: TARGET_Y,
+        duration: 2.0,
+        ease: "power2.out",
+        delay: 0.1,
+      });
+    };
+
+    const onUserInteract = () => {
+      if (tween && tween.isActive()) {
+        tween.kill();
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      const isLoaded = (window as unknown as { __PORTFOLIO_LOADED__?: boolean }).__PORTFOLIO_LOADED__;
+      if (isLoaded) {
+        startEntranceAnimation();
+      } else {
+        window.addEventListener("portfolio:page-loaded", startEntranceAnimation, { once: true });
+      }
+      window.addEventListener("portfolio:stop-entrance", onUserInteract);
+    }
+
+    const fallback = setTimeout(startEntranceAnimation, 1200);
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("portfolio:page-loaded", startEntranceAnimation);
+        window.removeEventListener("portfolio:stop-entrance", onUserInteract);
+      }
+      clearTimeout(fallback);
+      if (tween) tween.kill();
+    };
+  }, []);
+
   return (
     <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.25}>
-      {/* -1.409 rad (-80.7 deg) rotates the model so the monitor and chair face directly towards the camera */}
-      <group ref={groupRef} position={[0, -0.22, 0]} rotation={[0.04, -1.409, 0]}>
+      <group ref={groupRef} position={[0, -0.22, 0]} rotation={[0.04, INITIAL_Y, 0]}>
         <Center>
           <primitive object={scene} scale={0.38} />
         </Center>
@@ -96,6 +143,45 @@ function ConstellationField() {
   );
 }
 
+function InteractiveControls() {
+  const controlsRef = useRef<any>(null);
+
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+
+    const onStart = () => {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("portfolio:stop-entrance"));
+      }
+    };
+
+    controls.addEventListener("start", onStart);
+    return () => {
+      controls.removeEventListener("start", onStart);
+    };
+  }, []);
+
+  return (
+    <OrbitControls
+      ref={controlsRef}
+      enableZoom={false}
+      enablePan={false}
+      enableDamping={true}
+      dampingFactor={0.018}
+      rotateSpeed={1.25}
+      minPolarAngle={Math.PI / 4}
+      maxPolarAngle={Math.PI / 2 + 0.12}
+      mouseButtons={{
+        LEFT: THREE.MOUSE.ROTATE,
+      }}
+      touches={{
+        ONE: THREE.TOUCH.ROTATE,
+      }}
+    />
+  );
+}
+
 export default function ThreeScene() {
   return (
     <div
@@ -113,21 +199,7 @@ export default function ThreeScene() {
         <directionalLight position={[5, -2, -3]} intensity={1.0} color="#38bdf8" />
         <pointLight position={[0, 2.5, 3]} intensity={0.6} color="#ffffff" />
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableDamping={true}
-          dampingFactor={0.018}
-          rotateSpeed={1.25}
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI / 2 + 0.12}
-          mouseButtons={{
-            LEFT: THREE.MOUSE.ROTATE,
-          }}
-          touches={{
-            ONE: THREE.TOUCH.ROTATE,
-          }}
-        />
+        <InteractiveControls />
 
         <Suspense fallback={null}>
           <DeskModel />

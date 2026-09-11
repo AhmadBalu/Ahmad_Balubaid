@@ -57,7 +57,10 @@ export default function RootLayout({
       className={`${cormorant.variable} ${syne.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#05070c] text-[#f1f5f9] selection:bg-[#0df5c8]/20 selection:text-[#0df5c8]">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[#05070c] text-[#f1f5f9] selection:bg-[#0df5c8]/20 selection:text-[#0df5c8]"
+      >
         {children}
       </body>
     </html>
