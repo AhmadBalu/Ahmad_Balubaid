@@ -6,8 +6,8 @@ import * as THREE from "three";
 import { gsap } from "gsap";
 import { getAssetPath } from "../utils/assets";
 
-const TARGET_Y = -1.409; // Monitor and chair facing directly forward towards the camera
-const INITIAL_Y = TARGET_Y - Math.PI / 2; // 45 degrees offset showing the right profile of the desk setup
+const TARGET_Y = -1.009; // Monitor and chair facing directly forward towards the camera
+const INITIAL_Y = TARGET_Y - Math.PI / 1; // 45 degrees offset showing the right profile of the desk setup
 
 function DeskModel() {
   const { scene } = useGLTF(getAssetPath("/desk1.glb"));
