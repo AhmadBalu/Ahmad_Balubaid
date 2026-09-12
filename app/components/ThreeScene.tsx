@@ -10,7 +10,7 @@ const TARGET_Y = -1.009; // Monitor and chair facing directly forward towards th
 const INITIAL_Y = TARGET_Y - Math.PI / 1; // 45 degrees offset showing the right profile of the desk setup
 
 function DeskModel() {
-  const { scene } = useGLTF(getAssetPath("/desk1.glb"));
+  const { scene } = useGLTF(getAssetPath("/desk1-optimized.glb"));
   const groupRef = useRef<THREE.Group>(null!);
 
   useEffect(() => {
@@ -210,4 +210,4 @@ export default function ThreeScene() {
   );
 }
 
-useGLTF.preload(getAssetPath("/desk1.glb"));
+useGLTF.preload(getAssetPath("/desk1-optimized.glb"));
