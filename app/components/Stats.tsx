@@ -3,7 +3,9 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiAward, FiCheckCircle, FiShield, FiExternalLink } from "react-icons/fi";
+import { splitRevealChars } from "../utils/reveal";
 import { HiSparkles } from "react-icons/hi";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,8 +43,18 @@ const certifications = [
 export default function Stats() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const numbersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    // The counters below tween `innerHTML` from 0 up to the real figure — the
+    // markup ships a literal 0 — so they cannot simply be skipped: the spans
+    // render their final value instead when the preference is set (see the
+    // metrics grid). Note the imperative read. This effect runs once with the
+    // reactive `reduced` still false, and if it built the tween it would set
+    // innerHTML to 0; the cleanup on the next run then reverts to that recorded
+    // 0, stomping the value React had just rendered.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       // Counter animation
       numbersRef.current.forEach((numEl, i) => {
@@ -82,7 +94,7 @@ export default function Stats() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   return (
     <section
@@ -94,19 +106,26 @@ export default function Stats() {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8" data-reveal="up">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 06 // ACCREDITATIONS & VALIDATED METRICS ]
           </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+          <div className="accent-rule flex-1" />
         </div>
 
         {/* Section Title */}
         <div className="mb-16">
-          <h2 className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3">
-            Impact Metrics & Credentials
+          <h2
+            data-reveal="chars"
+            className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3"
+          >
+            {splitRevealChars("Impact Metrics & Credentials")}
           </h2>
-          <p className="font-mono text-xs text-slate-400 tracking-widest uppercase">
+          <p
+            data-reveal="up"
+            style={{ "--reveal-delay": "320ms" } as React.CSSProperties}
+            className="font-mono text-xs text-slate-400 tracking-widest uppercase"
+          >
             VERIFIED INDUSTRY QUALIFICATIONS, ARCHITECTURAL SCALE, AND CONTINUOUS LEARNING
           </p>
         </div>
@@ -128,7 +147,7 @@ export default function Stats() {
                       ref={(el) => { numbersRef.current[i] = el; }}
                       className="font-editorial italic text-4xl sm:text-6xl font-light text-white"
                     >
-                      0
+                      {reduced ? stat.value : 0}
                     </span>
                     <span className="font-syne font-bold text-2xl text-[#3d6bff]">
                       {stat.suffix}

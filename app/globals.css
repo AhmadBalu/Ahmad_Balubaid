@@ -54,6 +54,119 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+/* ---------------------------------------------------------------------------
+   Scroll reveal system
+   One shared IntersectionObserver (see ScrollReveal.tsx) toggles
+   `.is-revealed`; the variants below only differ in their entry transform.
+--------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal="up"] {
+  transform: translate3d(0, 34px, 0);
+}
+
+[data-reveal="left"] {
+  transform: translate3d(-38px, 0, 0);
+}
+
+[data-reveal="right"] {
+  transform: translate3d(38px, 0, 0);
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.94);
+}
+
+/* Heading variant: the element itself stays put and only its
+   `.reveal-char` children cascade in. */
+[data-reveal="chars"] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Letter-by-letter cascade for section headings */
+.reveal-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 0.42em, 0);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--char-index, 0) * 24ms);
+}
+
+.is-revealed .reveal-char {
+  opacity: 1;
+  transform: none;
+}
+
+/* Accent underline that draws itself in beneath section eyebrow tags */
+.accent-rule {
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    var(--accent-cobalt) 0%,
+    rgba(61, 107, 255, 0.35) 55%,
+    transparent 100%
+  );
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
+}
+
+.is-revealed .accent-rule {
+  transform: scaleX(1);
+}
+
+/* Widens a control's touch area to the 44px minimum without growing the
+   control itself — several of these are icon-only pills whose 34px box is the
+   intended look on desktop. The pseudo-element only exists on coarse pointers,
+   so a mouse never hits an invisible target. */
+@media (pointer: coarse) {
+  .touch-target {
+    position: relative;
+  }
+
+  .touch-target::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .reveal-char {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .accent-rule {
+    transform: scaleX(1) !important;
+    transition: none !important;
+  }
+}
+
 /* Liquid Glass System */
 .liquid-glass {
   background: linear-gradient(
@@ -160,6 +273,60 @@ body {
   height: 58px;
   border-color: rgba(61, 107, 255, 0.8);
   background: rgba(61, 107, 255, 0.08);
+}
+
+/* The workspace render is deliberately unframed: two nested masks multiply
+   into a feathered edge on the left and top/bottom, so the model reads as
+   floating in the page rather than sitting inside a box. */
+.hero-scene-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.32) 12%,
+    #000 30%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.32) 12%,
+    #000 30%
+  );
+}
+
+/* Let touch users spin the model horizontally without trapping the page's
+   vertical scroll inside the canvas. */
+.hero-scene-region canvas {
+  touch-action: pan-y;
+}
+
+.hero-scene-fade-y {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 15%,
+    #000 40%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 15%,
+    #000 40%,
+    #000 86%,
+    transparent 100%
+  );
+}
+
+/* Soft dark well that separates the additive particle name from the scene */
+.headline-well {
+  background: radial-gradient(
+    ellipse 62% 54% at 50% 46%,
+    rgba(4, 5, 11, 0.94) 0%,
+    rgba(4, 5, 11, 0.72) 42%,
+    rgba(4, 5, 11, 0.3) 68%,
+    transparent 84%
+  );
 }
 
 /* Ambient Liquid Gradient Blobs */

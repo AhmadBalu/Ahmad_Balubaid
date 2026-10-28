@@ -1,10 +1,11 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Center, Float, OrbitControls } from "@react-three/drei";
-import { Suspense, useRef, useMemo, useEffect } from "react";
+import { Suspense, useRef, useMemo, useEffect, useState } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { getAssetPath } from "../utils/assets";
+import { prefersReducedMotion } from "../utils/motion";
 
 const TARGET_Y = -1.009; // Monitor and chair facing directly forward towards the camera
 const INITIAL_Y = TARGET_Y - Math.PI / 1; // 45 degrees offset showing the right profile of the desk setup
@@ -12,6 +13,10 @@ const INITIAL_Y = TARGET_Y - Math.PI / 1; // 45 degrees offset showing the right
 function DeskModel() {
   const { scene } = useGLTF(getAssetPath("/desk1-optimized.glb"));
   const groupRef = useRef<THREE.Group>(null!);
+  // ThreeScene is mounted with ssr:false, so reading the media query during the
+  // first render is safe (no hydration mismatch) and lets us skip <Float>
+  // outright instead of unmounting it after the desk has already appeared.
+  const [reduced] = useState(() => prefersReducedMotion());
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -33,6 +38,12 @@ function DeskModel() {
 
   useEffect(() => {
     if (!groupRef.current) return;
+
+    // Reduced motion: land on the final framing immediately, no spin-in.
+    if (reduced) {
+      groupRef.current.rotation.y = TARGET_Y;
+      return;
+    }
 
     let tween: gsap.core.Tween | null = null;
 
@@ -73,15 +84,25 @@ function DeskModel() {
       clearTimeout(fallback);
       if (tween) tween.kill();
     };
-  }, []);
+  }, [reduced]);
+
+  const model = (
+    <group
+      ref={groupRef}
+      position={[0, -0.22, 0]}
+      rotation={[0.04, reduced ? TARGET_Y : INITIAL_Y, 0]}
+    >
+      <Center>
+        <primitive object={scene} scale={0.38} />
+      </Center>
+    </group>
+  );
+
+  if (reduced) return model;
 
   return (
     <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.25}>
-      <group ref={groupRef} position={[0, -0.22, 0]} rotation={[0.04, INITIAL_Y, 0]}>
-        <Center>
-          <primitive object={scene} scale={0.38} />
-        </Center>
-      </group>
+      {model}
     </Float>
   );
 }
@@ -112,12 +133,12 @@ function ConstellationField() {
   }, []);
 
   const pointsRef = useRef<THREE.Points>(null!);
+  const [reduced] = useState(() => prefersReducedMotion());
 
   useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.012;
-      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.04;
-    }
+    if (reduced || !pointsRef.current) return;
+    pointsRef.current.rotation.y = state.clock.elapsedTime * 0.012;
+    pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.04;
   });
 
   return (

@@ -9,6 +9,7 @@ import { HiSparkles } from "react-icons/hi";
 import { getAssetPath } from "../utils/assets";
 import TiltCard from "./TiltCard";
 import TextScramble from "./TextScramble";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +17,13 @@ export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageCardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    // Entrance tweens set their own `from` state, so skipping them leaves every
+    // card at its resting position rather than at opacity 0.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         imageCardRef.current,
@@ -68,7 +74,7 @@ export default function About() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   return (
     <section
@@ -82,11 +88,11 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center gap-3 mb-16">
+        <div className="flex items-center gap-3 mb-16" data-reveal="up">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 01 // ARCHITECT PROFILE & MANIFESTO ]
           </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+          <div className="accent-rule flex-1" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

@@ -2,12 +2,14 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 import Image from "next/image";
 import { FiAward, FiExternalLink, FiBookOpen, FiUsers, FiCheckCircle } from "react-icons/fi";
 import { FaLinkedin } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
 import { getAssetPath } from "../utils/assets";
+import { splitRevealChars } from "../utils/reveal";
 import TiltCard from "./TiltCard";
 import TextScramble from "./TextScramble";
 import MagneticButton from "./MagneticButton";
@@ -18,8 +20,13 @@ export default function ResearchPublication() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    // Entrance tweens set their own from-state, so skipping them leaves both
+    // cards resting at their final position rather than at opacity 0.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         leftCardRef.current,
@@ -55,7 +62,7 @@ export default function ResearchPublication() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   return (
     <section
@@ -69,12 +76,12 @@ export default function ResearchPublication() {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center justify-between gap-4 mb-8">
+        <div className="flex items-center justify-between gap-4 mb-8" data-reveal="up">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
               [ 03 // PEER-REVIEWED RESEARCH & IEEE PUBLICATION ]
             </span>
-            <div className="h-px w-24 bg-gradient-to-r from-white/15 to-transparent" />
+            <div className="accent-rule w-24" />
           </div>
           <span className="font-mono text-xs text-slate-400 hidden sm:inline-block">
             PUBLISHED IN IEEE XPLORE • ILTC 2026
@@ -83,10 +90,17 @@ export default function ResearchPublication() {
 
         {/* Section Title */}
         <div className="mb-14">
-          <h2 className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3">
-            Academic Research & Publications
+          <h2
+            data-reveal="chars"
+            className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3"
+          >
+            {splitRevealChars("Academic Research & Publications")}
           </h2>
-          <p className="font-mono text-xs text-slate-400 tracking-widest uppercase">
+          <p
+            data-reveal="up"
+            style={{ "--reveal-delay": "320ms" } as React.CSSProperties}
+            className="font-mono text-xs text-slate-400 tracking-widest uppercase"
+          >
             ADVANCING ARABIC GENERATIVE AI, SEMANTIC RETRIEVAL, AND HALLUCINATION REDUCTION
           </p>
         </div>

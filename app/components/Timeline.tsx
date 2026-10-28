@@ -2,7 +2,10 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 import { FiCheckCircle, FiCalendar, FiMapPin, FiAward } from "react-icons/fi";
+
+import { splitRevealChars } from "../utils/reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,8 +101,13 @@ const timelineData: TimelineEntry[] = [
 
 export default function Timeline() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    // Entrance tweens set their own from-state, so skipping them leaves every
+    // entry resting at its final position rather than at opacity 0.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".timeline-entry-card",
@@ -119,7 +127,7 @@ export default function Timeline() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   return (
     <section
@@ -132,19 +140,26 @@ export default function Timeline() {
 
       <div className="max-w-5xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8" data-reveal="up">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 05 // CHRONOLOGICAL TELEMETRY ]
           </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+          <div className="accent-rule flex-1" />
         </div>
 
         {/* Section Title */}
         <div className="mb-16">
-          <h2 className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3">
-            Career Chronicle & Milestones
+          <h2
+            data-reveal="chars"
+            className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3"
+          >
+            {splitRevealChars("Career Chronicle & Milestones")}
           </h2>
-          <p className="font-mono text-xs text-slate-400 tracking-widest uppercase">
+          <p
+            data-reveal="up"
+            style={{ "--reveal-delay": "320ms" } as React.CSSProperties}
+            className="font-mono text-xs text-slate-400 tracking-widest uppercase"
+          >
             A LOGBOOK OF ACADEMIC RESEARCH, PLATFORMS SCALED, AND TECHNICAL ROLES
           </p>
         </div>

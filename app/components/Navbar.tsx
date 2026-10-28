@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiSparkles } from "react-icons/hi";
 import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import TextScramble from "./TextScramble";
@@ -8,14 +8,36 @@ import MagneticButton from "./MagneticButton";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+
+    // The progress bar is written straight to the DOM so scrubbing the page
+    // doesn't re-render the nav (and its TextScramble children) every frame.
+    const update = () => {
+      frame = 0;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+      }
       setScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -29,6 +51,17 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 pt-4 sm:pt-6 pointer-events-none transition-all duration-300">
+      {/* Reading progress — cobalt to lime as the page is consumed.
+          The initial scale is an inline transform (not `scale-x-0`, which sets
+          the `scale` property and would multiply against the value we write). */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] overflow-hidden">
+        <div
+          ref={progressRef}
+          style={{ transform: "scaleX(0)" }}
+          className="h-full w-full origin-left bg-gradient-to-r from-[#1a3fd4] via-[#3d6bff] to-[#c6ff00] shadow-[0_0_12px_rgba(61,107,255,0.65)]"
+        />
+      </div>
+
       <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
         {/* Brand / Monogram */}
         <MagneticButton strength={0.25}>
@@ -80,7 +113,7 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden liquid-glass-pill p-2 text-white hover:text-[#3d6bff] transition-colors"
+            className="touch-target lg:hidden liquid-glass-pill p-2 text-white hover:text-[#3d6bff] transition-colors"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <FiX size={18} /> : <FiMenu size={18} />}

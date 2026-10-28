@@ -45,7 +45,7 @@ export default function DesignQuirksDock() {
           <MagneticButton strength={0.3}>
             <button
               onClick={toggleSound}
-              className={`px-3 py-1.5 rounded-full font-mono text-[11px] flex items-center gap-2 transition-all cursor-pointer ${
+              className={`touch-target px-3 py-1.5 rounded-full font-mono text-[11px] flex items-center gap-2 transition-all cursor-pointer ${
                 soundEnabled
                   ? "bg-[#3d6bff]/20 text-[#3d6bff] border border-[#3d6bff]/60 shadow-[0_0_12px_rgba(61,107,255,0.3)]"
                   : "text-slate-400 hover:text-white hover:bg-white/10"
@@ -74,7 +74,7 @@ export default function DesignQuirksDock() {
           <MagneticButton strength={0.35}>
             <button
               onClick={() => setTerminalOpen(true)}
-              className="liquid-glass-pill px-3.5 py-1.5 text-[11px] font-mono text-white hover:text-[#3d6bff] bg-white/[0.08] hover:bg-[#3d6bff]/20 border border-white/20 hover:border-[#3d6bff]/60 flex items-center gap-2 transition-all cursor-pointer shadow-lg"
+              className="touch-target liquid-glass-pill px-3.5 py-1.5 text-[11px] font-mono text-white hover:text-[#3d6bff] bg-white/[0.08] hover:bg-[#3d6bff]/20 border border-white/20 hover:border-[#3d6bff]/60 flex items-center gap-2 transition-all cursor-pointer shadow-lg"
               title="Open interactive system terminal (hotkey: ~)"
             >
               <FiTerminal size={13} className="text-[#3d6bff]" />

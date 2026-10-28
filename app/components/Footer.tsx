@@ -33,7 +33,7 @@ export default function Footer() {
             href="https://github.com/AhmadBalu"
             target="_blank"
             rel="noopener noreferrer"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-white hover:border-[#3d6bff]/50 transition-colors"
+            className="touch-target liquid-glass-pill p-3 text-slate-300 hover:text-white hover:border-[#3d6bff]/50 transition-colors"
             aria-label="GitHub"
           >
             <SiGithub size={16} />
@@ -42,14 +42,14 @@ export default function Footer() {
             href="https://linkedin.com/in/ahmad-balubaid/"
             target="_blank"
             rel="noopener noreferrer"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#c6ff00] hover:border-[#c6ff00]/50 transition-colors"
+            className="touch-target liquid-glass-pill p-3 text-slate-300 hover:text-[#c6ff00] hover:border-[#c6ff00]/50 transition-colors"
             aria-label="LinkedIn"
           >
             <FaLinkedin size={16} />
           </a>
           <a
             href="mailto:Ahmadobalubaid@gmail.com"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors"
+            className="touch-target liquid-glass-pill p-3 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors"
             aria-label="Email"
           >
             <FiMail size={16} />

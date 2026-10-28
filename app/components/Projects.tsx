@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 import Image from "next/image";
 import { SiGithub, SiDiscord, SiPython } from "react-icons/si";
 import {
@@ -18,6 +19,7 @@ import {
 } from "react-icons/fi";
 import { HiSparkles } from "react-icons/hi";
 import { getAssetPath } from "../utils/assets";
+import { splitRevealChars } from "../utils/reveal";
 import TiltCard from "./TiltCard";
 import TextScramble from "./TextScramble";
 import MagneticButton from "./MagneticButton";
@@ -208,7 +210,13 @@ export default function Projects() {
   const [ragSimulating, setRagSimulating] = useState(false);
   const [ragResult, setRagResult] = useState<string | null>(null);
 
+  const reduced = usePrefersReducedMotion();
+
   useEffect(() => {
+    // Entrance tweens set their own from-state, so skipping them leaves the
+    // cards resting at their final position rather than at opacity 0.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".project-card-item",
@@ -228,7 +236,7 @@ export default function Projects() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   const handleLabyProfileSelect = (ign: string) => {
     setSelectedIgn(ign);
@@ -269,12 +277,12 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center justify-between gap-4 mb-8">
+        <div className="flex items-center justify-between gap-4 mb-8" data-reveal="up">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
               [ 02 // FLAGSHIP ARTIFACTS ]
             </span>
-            <div className="h-px w-24 bg-gradient-to-r from-white/15 to-transparent" />
+            <div className="accent-rule w-24" />
           </div>
           <span className="font-mono text-xs text-slate-400 hidden sm:inline-block">
             SYSTEM ARCHITECTURE & PRODUCTION CASE STUDIES
@@ -283,10 +291,17 @@ export default function Projects() {
 
         {/* Section Title */}
         <div className="mb-16">
-          <h2 className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3">
-            Curated Engineering Works
+          <h2
+            data-reveal="chars"
+            className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3"
+          >
+            {splitRevealChars("Curated Engineering Works")}
           </h2>
-          <p className="font-mono text-xs text-slate-400 tracking-widest uppercase">
+          <p
+            data-reveal="up"
+            style={{ "--reveal-delay": "320ms" } as React.CSSProperties}
+            className="font-mono text-xs text-slate-400 tracking-widest uppercase"
+          >
             EXPLORE CROSS-NETWORK INTELLIGENCE, ARABIC RAG REASONING, CLINICAL ML, AND HIGH-CONCURRENCY SYSTEMS
           </p>
         </div>
@@ -392,7 +407,7 @@ export default function Projects() {
                         href={project.liveUrl || project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors block"
+                        className="touch-target liquid-glass-pill p-2.5 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors block"
                         aria-label={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
                         title={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
                       >

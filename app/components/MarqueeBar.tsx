@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 
 const row1 = [
   "ARABIC LEGAL RAG",
@@ -25,8 +26,13 @@ const row2 = [
 export default function MarqueeBar() {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    // Two endless marquees are the most fatiguing thing on the page — leave the
+    // rows parked and readable when the visitor has asked for less motion.
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       // Row 1 animation (leftwards)
       if (row1Ref.current) {
@@ -54,7 +60,7 @@ export default function MarqueeBar() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   return (
     <div className="relative py-6 bg-[#03040a] border-y border-white/10 overflow-hidden select-none">

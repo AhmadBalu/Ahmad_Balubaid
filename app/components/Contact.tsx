@@ -3,9 +3,11 @@ import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiMail, FiSend, FiCopy, FiCheck, FiArrowUpRight } from "react-icons/fi";
+import { splitRevealChars } from "../utils/reveal";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
+import { prefersReducedMotion, usePrefersReducedMotion } from "../utils/motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,8 +23,11 @@ export default function Contact() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const emailAddress = "Ahmadobalubaid@gmail.com";
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion()) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".contact-terminal-card",
@@ -41,7 +46,7 @@ export default function Contact() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [reduced]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -79,19 +84,26 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8" data-reveal="up">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 07 // TRANSMISSION TERMINAL ]
           </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+          <div className="accent-rule flex-1" />
         </div>
 
         {/* Section Title */}
         <div className="mb-16">
-          <h2 className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3">
-            Initiate Collaboration
+          <h2
+            data-reveal="chars"
+            className="font-editorial italic text-4xl sm:text-6xl text-white font-light mb-3"
+          >
+            {splitRevealChars("Initiate Collaboration")}
           </h2>
-          <p className="font-mono text-xs text-slate-400 tracking-widest uppercase">
+          <p
+            data-reveal="up"
+            style={{ "--reveal-delay": "320ms" } as React.CSSProperties}
+            className="font-mono text-xs text-slate-400 tracking-widest uppercase"
+          >
             REACH OUT FOR AI RESEARCH, SYSTEM ARCHITECTURE, OR ENGINEERING OPPORTUNITIES
           </p>
         </div>
@@ -126,7 +138,7 @@ export default function Contact() {
                     </span>
                     <button
                       onClick={handleCopyEmail}
-                      className="liquid-glass-pill p-2 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors shrink-0"
+                      className="touch-target liquid-glass-pill p-2 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors shrink-0"
                       aria-label="Copy Email"
                     >
                       {copied ? <FiCheck className="text-[#3d6bff]" /> : <FiCopy />}
