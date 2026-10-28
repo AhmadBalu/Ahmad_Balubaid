@@ -71,16 +71,16 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Ambient background glow */}
-      <div className="ambient-glow w-[600px] h-[600px] bg-[#0df5c8]/10 top-1/4 -right-20" />
-      <div className="ambient-glow w-[450px] h-[450px] bg-[#38bdf8]/10 -bottom-20 left-10" />
+      <div className="ambient-glow w-[600px] h-[600px] bg-[#3d6bff]/10 top-1/4 -right-20" />
+      <div className="ambient-glow w-[450px] h-[450px] bg-[#c6ff00]/10 -bottom-20 left-10" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center gap-3 mb-8">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 07 // TRANSMISSION TERMINAL ]
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
@@ -115,7 +115,7 @@ export default function Contact() {
                     <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
                       DIRECT EMAIL TRANSMISSION
                     </span>
-                    <span className="font-mono text-[10px] text-[#0df5c8]">
+                    <span className="font-mono text-[10px] text-[#3d6bff]">
                       {copied ? "COPIED!" : "CLICK TO COPY"}
                     </span>
                   </div>
@@ -126,10 +126,10 @@ export default function Contact() {
                     </span>
                     <button
                       onClick={handleCopyEmail}
-                      className="liquid-glass-pill p-2 text-slate-300 hover:text-[#0df5c8] hover:border-[#0df5c8]/50 transition-colors shrink-0"
+                      className="liquid-glass-pill p-2 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors shrink-0"
                       aria-label="Copy Email"
                     >
-                      {copied ? <FiCheck className="text-[#0df5c8]" /> : <FiCopy />}
+                      {copied ? <FiCheck className="text-[#3d6bff]" /> : <FiCopy />}
                     </button>
                   </div>
                 </div>
@@ -145,9 +145,9 @@ export default function Contact() {
                       href="https://linkedin.com/in/ahmad-balubaid/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#0df5c8] border border-white/10 flex items-center gap-2 transition-all"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#3d6bff] border border-white/10 flex items-center gap-2 transition-all"
                     >
-                      <FaLinkedin className="text-base text-[#38bdf8]" />
+                      <FaLinkedin className="text-base text-[#c6ff00]" />
                       <span>LinkedIn Profile</span>
                       <FiArrowUpRight className="text-xs text-slate-400" />
                     </a>
@@ -156,7 +156,7 @@ export default function Contact() {
                       href="https://github.com/AhmadBalu"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#0df5c8] border border-white/10 flex items-center gap-2 transition-all"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#3d6bff] border border-white/10 flex items-center gap-2 transition-all"
                     >
                       <SiGithub className="text-base text-white" />
                       <span>GitHub Workspace</span>
@@ -168,7 +168,7 @@ export default function Contact() {
 
               {/* Status Pill */}
               <div className="mt-8 pt-6 border-t border-white/10 font-mono text-xs text-slate-400 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#0df5c8] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#3d6bff] animate-pulse" />
                 <span>Riyadh / Jeddah • UTC+3 AST</span>
               </div>
             </div>
@@ -188,7 +188,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#0df5c8]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#3d6bff]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
                     />
                   </div>
 
@@ -203,7 +203,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#0df5c8]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#3d6bff]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
                     />
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#0df5c8]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#3d6bff]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500"
                   />
                 </div>
 
@@ -234,27 +234,27 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#0df5c8]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500 resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-[#3d6bff]/60 focus:bg-white/[0.07] transition-all placeholder:text-slate-500 resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full liquid-glass-pill py-4 bg-[#0df5c8]/15 hover:bg-[#0df5c8]/25 border border-[#0df5c8]/50 text-white hover:text-[#0df5c8] font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 group cursor-pointer shadow-[0_10px_30px_rgba(13,245,200,0.15)]"
+                  className="w-full liquid-glass-pill py-4 bg-[#3d6bff]/15 hover:bg-[#3d6bff]/25 border border-[#3d6bff]/50 text-white hover:text-[#3d6bff] font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 group cursor-pointer shadow-[0_10px_30px_rgba(61,107,255,0.15)]"
                 >
                   {status === "submitting" ? (
                     <span>Transmitting Dispatch...</span>
                   ) : (
                     <>
                       <span>Transmit Message</span>
-                      <FiSend className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform text-[#0df5c8]" />
+                      <FiSend className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform text-[#3d6bff]" />
                     </>
                   )}
                 </button>
 
                 {status === "success" && (
-                  <div className="p-4 rounded-xl liquid-glass-subtle border border-emerald-500/40 text-emerald-400 font-mono text-xs flex items-center gap-2">
+                  <div className="p-4 rounded-xl liquid-glass-subtle border border-[#c6ff00]/40 text-[#c6ff00] font-mono text-xs flex items-center gap-2">
                     <FiCheck />
                     <span>Transmission received successfully. I will respond within 24 hours.</span>
                   </div>

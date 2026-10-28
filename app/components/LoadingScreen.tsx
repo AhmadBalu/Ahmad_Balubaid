@@ -31,27 +31,27 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[9999] bg-[#04060a] flex flex-col items-center justify-center p-6 select-none"
+          className="fixed inset-0 z-[9999] bg-[#03040a] flex flex-col items-center justify-center p-6 select-none"
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Ambient fluid glow */}
-          <div className="ambient-glow w-[350px] h-[350px] bg-[#0df5c8]/15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          <div className="ambient-glow w-[350px] h-[350px] bg-[#3d6bff]/15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
           <div className="relative z-10 max-w-sm w-full liquid-glass rounded-3xl p-8 border border-white/15 text-center flex flex-col items-center shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#0df5c8] shadow-[0_0_12px_#0df5c8] mb-4 animate-ping" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#3d6bff] shadow-[0_0_12px_#3d6bff] mb-4 animate-ping" />
 
             <h2 className="font-syne font-extrabold text-xl tracking-wider text-white mb-1">
               AHMAD BALUBAID
             </h2>
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#0df5c8] mb-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#3d6bff] mb-6">
               AI Systems & Machine Intelligence
             </p>
 
             {/* Progress Bar Container */}
             <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden mb-3 border border-white/10">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#0df5c8] to-[#38bdf8]"
+                className="h-full bg-gradient-to-r from-[#3d6bff] to-[#c6ff00]"
                 style={{ width: `${Math.min(progress, 100)}%` }}
                 transition={{ ease: "easeOut" }}
               />

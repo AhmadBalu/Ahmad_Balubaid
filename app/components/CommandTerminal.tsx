@@ -63,10 +63,10 @@ export default function CommandTerminal({
     const drops: number[] = Array(columns).fill(1);
 
     const interval = setInterval(() => {
-      ctx.fillStyle = "rgba(4, 7, 13, 0.08)";
+      ctx.fillStyle = "rgba(4, 5, 11, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#0df5c8";
+      ctx.fillStyle = "#3d6bff";
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -275,7 +275,7 @@ STATUS: Peer-Reviewed & Indexed`,
               <span className="w-3 h-3 rounded-full bg-amber-500/80" />
               <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
               <span className="ml-3 text-xs text-slate-400 flex items-center gap-2 font-medium">
-                <FiTerminal className="text-[#0df5c8]" />
+                <FiTerminal className="text-[#3d6bff]" />
                 <span>ahmad@system: ~ (bash)</span>
               </span>
             </div>
@@ -296,7 +296,7 @@ STATUS: Peer-Reviewed & Indexed`,
 
           {/* Terminal Output Area */}
           <div
-            className="flex-1 p-5 overflow-y-auto text-xs space-y-2 select-text bg-[#03060a]/90 min-h-[320px] max-h-[500px]"
+            className="flex-1 p-5 overflow-y-auto text-xs space-y-2 select-text bg-[#03040a]/90 min-h-[320px] max-h-[500px]"
             onClick={() => inputRef.current?.focus()}
           >
             {history.map((item, index) => (
@@ -304,11 +304,11 @@ STATUS: Peer-Reviewed & Indexed`,
                 key={index}
                 className={`whitespace-pre-wrap leading-relaxed ${
                   item.type === "input"
-                    ? "text-[#38bdf8] font-semibold"
+                    ? "text-[#c6ff00] font-semibold"
                     : item.type === "error"
                     ? "text-rose-400"
                     : item.type === "system"
-                    ? "text-[#0df5c8]"
+                    ? "text-[#3d6bff]"
                     : "text-slate-300 font-light"
                 }`}
               >
@@ -320,7 +320,7 @@ STATUS: Peer-Reviewed & Indexed`,
 
           {/* Terminal Prompt Input Bar */}
           <div className="p-3.5 border-t border-white/10 bg-black/50 flex items-center gap-2.5">
-            <span className="text-[#0df5c8] font-bold text-xs select-none">$</span>
+            <span className="text-[#3d6bff] font-bold text-xs select-none">$</span>
             <input
               ref={inputRef}
               type="text"
@@ -328,14 +328,14 @@ STATUS: Peer-Reviewed & Indexed`,
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="type 'help', 'whoami', 'ping', 'matrix'..."
-              className="flex-1 bg-transparent text-xs text-white placeholder:text-slate-600 focus:outline-none font-mono caret-[#0df5c8]"
+              className="flex-1 bg-transparent text-xs text-white placeholder:text-slate-600 focus:outline-none font-mono caret-[#3d6bff]"
               autoFocus
               spellCheck={false}
               autoComplete="off"
             />
             <button
               onClick={() => handleCommand(inputVal)}
-              className="liquid-glass-pill px-3 py-1 text-[10px] text-[#0df5c8] border border-[#0df5c8]/40 hover:bg-[#0df5c8]/20 transition-all uppercase"
+              className="liquid-glass-pill px-3 py-1 text-[10px] text-[#3d6bff] border border-[#3d6bff]/40 hover:bg-[#3d6bff]/20 transition-all uppercase"
             >
               Exec
             </button>

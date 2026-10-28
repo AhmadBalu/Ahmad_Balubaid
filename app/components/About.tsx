@@ -74,16 +74,16 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Ambient background glow */}
-      <div className="ambient-glow w-[400px] h-[400px] bg-[#0df5c8]/10 top-1/4 -left-20" />
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#38bdf8]/10 -bottom-20 right-0" />
+      <div className="ambient-glow w-[400px] h-[400px] bg-[#3d6bff]/10 top-1/4 -left-20" />
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#c6ff00]/10 -bottom-20 right-0" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center gap-3 mb-16">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 01 // ARCHITECT PROFILE & MANIFESTO ]
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
@@ -95,15 +95,15 @@ export default function About() {
             ref={imageCardRef}
             className="lg:col-span-5 relative flex flex-col items-center"
           >
-            <TiltCard maxTilt={8} glowColor="rgba(13, 245, 200, 0.18)" className="w-full max-w-md">
+            <TiltCard maxTilt={8} glowColor="rgba(61, 107, 255, 0.18)" className="w-full max-w-md">
               <div className="relative w-full liquid-glass-card rounded-3xl p-3 sm:p-4 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.6)] group">
                 {/* Specular corner accents */}
-                <div className="absolute -top-1.5 -left-1.5 w-6 h-6 border-t-2 border-l-2 border-[#0df5c8] rounded-tl-lg pointer-events-none" />
-                <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 border-b-2 border-r-2 border-[#38bdf8] rounded-br-lg pointer-events-none" />
+                <div className="absolute -top-1.5 -left-1.5 w-6 h-6 border-t-2 border-l-2 border-[#3d6bff] rounded-tl-lg pointer-events-none" />
+                <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 border-b-2 border-r-2 border-[#c6ff00] rounded-br-lg pointer-events-none" />
 
                 {/* Holographic Badge */}
                 <div className="absolute top-6 right-6 z-20 liquid-glass-pill px-3 py-1 text-[10px] font-mono text-slate-200 border border-white/20 flex items-center gap-1.5 shadow-lg">
-                  <HiSparkles className="text-[#0df5c8]" />
+                  <HiSparkles className="text-[#3d6bff]" />
                   <TextScramble text="SAUDI TECH TALENT" />
                 </div>
 
@@ -117,14 +117,14 @@ export default function About() {
                     className="object-cover object-center grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070c] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#04050b] via-transparent to-transparent opacity-80" />
 
                   {/* Bottom Overlay Telemetry inside photo */}
                   <div className="absolute bottom-4 left-4 right-4 z-10">
                     <p className="font-syne font-bold text-white text-lg leading-tight">
                       Ahmad Balubaid
                     </p>
-                    <p className="font-mono text-[11px] text-[#0df5c8] tracking-wider">
+                    <p className="font-mono text-[11px] text-[#3d6bff] tracking-wider">
                       Computer Science • Effat University
                     </p>
                   </div>
@@ -133,8 +133,8 @@ export default function About() {
                 {/* Status footer pill */}
                 <div className="mt-3.5 px-3 py-2 rounded-xl liquid-glass-subtle flex items-center justify-between font-mono text-[11px]">
                   <span className="text-slate-400">STATUS:</span>
-                  <span className="text-emerald-400 flex items-center gap-1.5 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[#c6ff00] flex items-center gap-1.5 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#c6ff00] animate-pulse" />
                     Active Engineering
                   </span>
                 </div>
@@ -160,7 +160,7 @@ export default function About() {
             <div className="about-pillars-grid grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
               {/* Pillar 1 */}
               <div className="about-pillar-card liquid-glass-card rounded-2xl p-4 border border-white/10">
-                <div className="w-8 h-8 rounded-xl bg-[#0df5c8]/10 border border-[#0df5c8]/30 flex items-center justify-center text-[#0df5c8] mb-3">
+                <div className="w-8 h-8 rounded-xl bg-[#3d6bff]/10 border border-[#3d6bff]/30 flex items-center justify-center text-[#3d6bff] mb-3">
                   <FiCpu size={16} />
                 </div>
                 <h3 className="font-syne font-bold text-white text-xs uppercase tracking-wider mb-1">
@@ -173,7 +173,7 @@ export default function About() {
 
               {/* Pillar 2 */}
               <div className="about-pillar-card liquid-glass-card rounded-2xl p-4 border border-white/10">
-                <div className="w-8 h-8 rounded-xl bg-[#38bdf8]/10 border border-[#38bdf8]/30 flex items-center justify-center text-[#38bdf8] mb-3">
+                <div className="w-8 h-8 rounded-xl bg-[#c6ff00]/10 border border-[#c6ff00]/30 flex items-center justify-center text-[#c6ff00] mb-3">
                   <FiActivity size={16} />
                 </div>
                 <h3 className="font-syne font-bold text-white text-xs uppercase tracking-wider mb-1">
@@ -186,7 +186,7 @@ export default function About() {
 
               {/* Pillar 3 */}
               <div className="about-pillar-card liquid-glass-card rounded-2xl p-4 border border-white/10">
-                <div className="w-8 h-8 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/30 flex items-center justify-center text-[#f59e0b] mb-3">
+                <div className="w-8 h-8 rounded-xl bg-[#c6ff00]/10 border border-[#c6ff00]/30 flex items-center justify-center text-[#c6ff00] mb-3">
                   <FiServer size={16} />
                 </div>
                 <h3 className="font-syne font-bold text-white text-xs uppercase tracking-wider mb-1">
@@ -202,7 +202,7 @@ export default function About() {
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="liquid-glass-pill px-6 py-3 bg-[#0df5c8]/10 hover:bg-[#0df5c8]/20 border border-[#0df5c8]/40 text-[#0df5c8] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all duration-300 group"
+                className="liquid-glass-pill px-6 py-3 bg-[#3d6bff]/10 hover:bg-[#3d6bff]/20 border border-[#3d6bff]/40 text-[#3d6bff] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all duration-300 group"
               >
                 <span>Inspect Flagship Artifacts</span>
                 <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -18,7 +18,7 @@ import DesignQuirksDock from "./components/DesignQuirksDock";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#05070c] text-white selection:bg-[#0df5c8]/20 selection:text-[#0df5c8] overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#04050b] text-white selection:bg-[#3d6bff]/20 selection:text-[#3d6bff] overflow-x-hidden">
       <LoadingScreen />
       <CustomCursor />
       <ParticleNetwork />

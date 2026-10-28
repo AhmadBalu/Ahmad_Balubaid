@@ -261,17 +261,17 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Ambient background lights */}
-      <div className="ambient-glow w-[550px] h-[550px] bg-[#0df5c8]/10 top-1/3 -right-24" />
-      <div className="ambient-glow w-[450px] h-[450px] bg-[#818cf8]/10 bottom-10 left-10" />
+      <div className="ambient-glow w-[550px] h-[550px] bg-[#3d6bff]/10 top-1/3 -right-24" />
+      <div className="ambient-glow w-[450px] h-[450px] bg-[#3d6bff]/10 bottom-10 left-10" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
               [ 02 // FLAGSHIP ARTIFACTS ]
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-white/15 to-transparent" />
@@ -297,24 +297,24 @@ export default function Projects() {
             <TiltCard
               key={project.id}
               maxTilt={7}
-              glowColor="rgba(13, 245, 200, 0.14)"
+              glowColor="rgba(61, 107, 255, 0.14)"
               className="h-full"
             >
               <div className="project-card-item liquid-glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 group relative overflow-hidden h-full">
                 {/* Top Meta Bar */}
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-xs uppercase tracking-widest text-[#0df5c8] flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0df5c8]" />
+                    <span className="font-mono text-xs uppercase tracking-widest text-[#3d6bff] flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#3d6bff]" />
                       <TextScramble text={project.category} />
                     </span>
-                    <span className="font-editorial italic text-3xl text-white/25 group-hover:text-[#0df5c8]/40 transition-colors">
+                    <span className="font-editorial italic text-3xl text-white/25 group-hover:text-[#3d6bff]/40 transition-colors">
                       {project.number}
                     </span>
                   </div>
 
                   {/* Project Title */}
-                  <h3 className="font-syne font-bold text-2xl sm:text-3xl text-white mb-2 group-hover:text-[#0df5c8] transition-colors">
+                  <h3 className="font-syne font-bold text-2xl sm:text-3xl text-white mb-2 group-hover:text-[#3d6bff] transition-colors">
                     {project.title}
                   </h3>
                   <p className="font-mono text-xs text-slate-300 mb-4 font-light">
@@ -322,17 +322,17 @@ export default function Projects() {
                   </p>
 
                   {/* Project Image Preview */}
-                  <div className="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/10 group-hover:border-[#0df5c8]/30 transition-colors flex items-center justify-center">
+                  <div className="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-slate-900 border border-white/10 group-hover:border-[#3d6bff]/30 transition-colors flex items-center justify-center">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 600px"
                       className={`object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${
-                        project.id === "labychecker" ? "object-contain p-6 bg-[#090d16]" : ""
+                        project.id === "labychecker" ? "object-contain p-6 bg-[#070911]" : ""
                       }`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-85" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#06080f] via-transparent to-transparent opacity-85" />
 
                     {/* Overlay Metrics Strip */}
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
@@ -379,9 +379,9 @@ export default function Projects() {
                           simulateRagQuery("Saudi Labor Law: End of Service Gratuity calculation rules");
                         }
                       }}
-                      className="liquid-glass-pill px-4 py-2.5 bg-white/[0.06] hover:bg-[#0df5c8]/15 border border-white/15 hover:border-[#0df5c8]/50 text-white hover:text-[#0df5c8] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer"
+                      className="liquid-glass-pill px-4 py-2.5 bg-white/[0.06] hover:bg-[#3d6bff]/15 border border-white/15 hover:border-[#3d6bff]/50 text-white hover:text-[#3d6bff] font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer"
                     >
-                      <HiSparkles className="text-[#0df5c8]" />
+                      <HiSparkles className="text-[#3d6bff]" />
                       <span>Inspect Architecture</span>
                     </button>
                   </MagneticButton>
@@ -392,12 +392,12 @@ export default function Projects() {
                         href={project.liveUrl || project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-[#0df5c8] hover:border-[#0df5c8]/50 transition-colors block"
+                        className="liquid-glass-pill p-2.5 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors block"
                         aria-label={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
                         title={project.liveUrl ? "Visit Live Platform" : "GitHub Repository"}
                       >
                         {project.liveUrl ? (
-                          <FiExternalLink size={16} className="text-[#0df5c8]" />
+                          <FiExternalLink size={16} className="text-[#3d6bff]" />
                         ) : (
                           <SiGithub size={16} />
                         )}
@@ -418,7 +418,7 @@ export default function Projects() {
             {/* Modal Close Button */}
             <button
               onClick={() => setActiveModalProject(null)}
-              className="absolute top-6 right-6 p-2 rounded-full liquid-glass-pill text-slate-400 hover:text-white hover:border-[#0df5c8]/50 transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-2 rounded-full liquid-glass-pill text-slate-400 hover:text-white hover:border-[#3d6bff]/50 transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <FiX size={20} />
@@ -426,7 +426,7 @@ export default function Projects() {
 
             {/* Header */}
             <div className="mb-6 pr-10">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0df5c8] flex items-center gap-2 mb-1">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#3d6bff] flex items-center gap-2 mb-1">
                 <span>[ ARTIFACT INSPECTOR // {activeModalProject.number} ]</span>
               </span>
               <h3 className="font-syne font-extrabold text-2xl sm:text-3xl text-white">
@@ -441,7 +441,7 @@ export default function Projects() {
             <div className="space-y-6 mb-8">
               <div className="liquid-glass-subtle rounded-2xl p-4 border border-white/10">
                 <h4 className="font-mono text-xs uppercase tracking-wider text-slate-300 flex items-center gap-2 mb-2">
-                  <FiCpu className="text-[#0df5c8]" />
+                  <FiCpu className="text-[#3d6bff]" />
                   <span>The Architectural Challenge</span>
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
@@ -451,24 +451,24 @@ export default function Projects() {
 
               <div className="liquid-glass-subtle rounded-2xl p-4 border border-white/10">
                 <h4 className="font-mono text-xs uppercase tracking-wider text-slate-300 flex items-center gap-2 mb-2">
-                  <FiLayers className="text-[#38bdf8]" />
+                  <FiLayers className="text-[#c6ff00]" />
                   <span>Engineered System Topology</span>
                 </h4>
-                <div className="bg-[#03060a] rounded-xl p-3 font-mono text-[11px] text-[#38bdf8] border border-white/10 overflow-x-auto leading-relaxed whitespace-pre-wrap">
+                <div className="bg-[#03040a] rounded-xl p-3 font-mono text-[11px] text-[#c6ff00] border border-white/10 overflow-x-auto leading-relaxed whitespace-pre-wrap">
                   {activeModalProject.deepDive.architecture}
                 </div>
               </div>
 
               {/* LabyChecker Interactive Cross-Network Intelligence Sandbox */}
               {activeModalProject.interactiveType === "labychecker" && (
-                <div className="liquid-glass rounded-2xl p-5 border border-[#0df5c8]/30">
+                <div className="liquid-glass rounded-2xl p-5 border border-[#3d6bff]/30">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#0df5c8] flex items-center gap-2">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#3d6bff] flex items-center gap-2">
                       <SiDiscord />
                       <span>Live Cross-Network Player Dossier Simulator</span>
                     </span>
-                    <span className="font-mono text-[10px] text-emerald-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="font-mono text-[10px] text-[#c6ff00] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#c6ff00] animate-ping" />
                       ASYNC STREAM ENGINE: ONLINE
                     </span>
                   </div>
@@ -484,7 +484,7 @@ export default function Projects() {
                         onClick={() => handleLabyProfileSelect(ign)}
                         className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                           selectedIgn === ign
-                            ? "bg-[#0df5c8]/20 text-[#0df5c8] border border-[#0df5c8]/50"
+                            ? "bg-[#3d6bff]/20 text-[#3d6bff] border border-[#3d6bff]/50"
                             : "bg-white/5 text-slate-300 hover:bg-white/10"
                         }`}
                       >
@@ -494,11 +494,11 @@ export default function Projects() {
                   </div>
 
                   {/* Simulated Discord Intelligence Embed */}
-                  <div className="bg-[#0b101b] rounded-2xl p-4 border border-[#38bdf8]/30 relative overflow-hidden font-mono text-xs">
+                  <div className="bg-[#080b14] rounded-2xl p-4 border border-[#c6ff00]/30 relative overflow-hidden font-mono text-xs">
                     <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-3 mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0df5c8] to-[#0284c7] p-0.5 flex items-center justify-center shadow-lg">
-                          <div className="w-full h-full bg-[#0b101b] rounded-[10px] flex items-center justify-center font-bold text-white text-xs">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3d6bff] to-[#1a3fd4] p-0.5 flex items-center justify-center shadow-lg">
+                          <div className="w-full h-full bg-[#080b14] rounded-[10px] flex items-center justify-center font-bold text-white text-xs">
                             {selectedIgn.substring(0, 2).toUpperCase()}
                           </div>
                         </div>
@@ -507,7 +507,7 @@ export default function Projects() {
                             <span className="font-syne font-bold text-white text-sm">
                               {selectedIgn}
                             </span>
-                            <span className="px-2 py-0.5 rounded text-[9px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            <span className="px-2 py-0.5 rounded text-[9px] bg-[#c6ff00]/20 text-[#c6ff00] border border-[#c6ff00]/30">
                               ✔ Cryptographic Laby.net Verified
                             </span>
                           </div>
@@ -519,29 +519,29 @@ export default function Projects() {
 
                       <div className="text-right hidden sm:block">
                         <span className="text-[10px] text-slate-400 block">Clearance Pool:</span>
-                        <span className="text-[10px] text-[#0df5c8]">cf_clearance: ACTIVE [Pool 2]</span>
+                        <span className="text-[10px] text-[#3d6bff]">cf_clearance: ACTIVE [Pool 2]</span>
                       </div>
                     </div>
 
                     {isLabyLoading ? (
-                      <div className="py-6 text-center text-[#0df5c8] animate-pulse">
+                      <div className="py-6 text-center text-[#3d6bff] animate-pulse">
                         Querying 18+ Minecraft networks via async parallel streams...
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-300">
                         {/* Server 1 */}
                         <div className="liquid-glass-subtle rounded-xl p-2.5 border border-white/10">
-                          <p className="text-[#38bdf8] font-bold text-[11px] mb-1">
+                          <p className="text-[#c6ff00] font-bold text-[11px] mb-1">
                             ⚔ Hypixel Network
                           </p>
                           <p className="text-[10px] text-slate-400">Rank: <span className="text-white font-medium">MVP++ [Aqua]</span></p>
-                          <p className="text-[10px] text-slate-400">Last Seen: <span className="text-emerald-400">&lt;t:1725199372:R&gt; (4 mins ago)</span></p>
+                          <p className="text-[10px] text-slate-400">Last Seen: <span className="text-[#c6ff00]">&lt;t:1725199372:R&gt; (4 mins ago)</span></p>
                           <p className="text-[10px] text-slate-400">First Joined: <span className="text-white">Jan 14, 2018</span></p>
                         </div>
 
                         {/* Server 2 */}
                         <div className="liquid-glass-subtle rounded-xl p-2.5 border border-white/10">
-                          <p className="text-[#0df5c8] font-bold text-[11px] mb-1">
+                          <p className="text-[#3d6bff] font-bold text-[11px] mb-1">
                             🏰 Wynncraft RPG
                           </p>
                           <p className="text-[10px] text-slate-400">Class: <span className="text-white font-medium">Archer (Lvl 104)</span></p>
@@ -552,11 +552,11 @@ export default function Projects() {
                         {/* Cosmetics & 3D render */}
                         <div className="liquid-glass-subtle rounded-xl p-2.5 border border-white/10 sm:col-span-2 flex items-center justify-between">
                           <div>
-                            <p className="text-[#f59e0b] font-bold text-[11px] mb-1">
+                            <p className="text-[#c6ff00] font-bold text-[11px] mb-1">
                               ✨ Cosmetics & Dynamic 3D Skins
                             </p>
                             <p className="text-[10px] text-slate-300">
-                              Active: Custom Bandana (Mint Glow), Animated Cloak, 3D Pose Render
+                              Active: Custom Bandana (Lime Glow), Animated Cloak, 3D Pose Render
                             </p>
                           </div>
                           <span className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-slate-200">
@@ -571,13 +571,13 @@ export default function Projects() {
 
               {/* RAG Simulation Sandbox */}
               {activeModalProject.interactiveType === "rag" && (
-                <div className="liquid-glass rounded-2xl p-5 border border-[#0df5c8]/30">
+                <div className="liquid-glass rounded-2xl p-5 border border-[#3d6bff]/30">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#0df5c8] flex items-center gap-2">
+                    <span className="font-mono text-xs uppercase tracking-wider text-[#3d6bff] flex items-center gap-2">
                       <FiTerminal />
                       <span>Live Arabic RAG Query Simulator</span>
                     </span>
-                    <span className="font-mono text-[10px] text-emerald-400">
+                    <span className="font-mono text-[10px] text-[#c6ff00]">
                       EMBEDDINGS: READY
                     </span>
                   </div>
@@ -593,7 +593,7 @@ export default function Projects() {
                       }
                       className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                         ragQuery.includes("Labor")
-                          ? "bg-[#0df5c8]/20 text-[#0df5c8] border border-[#0df5c8]/50"
+                          ? "bg-[#3d6bff]/20 text-[#3d6bff] border border-[#3d6bff]/50"
                           : "bg-white/5 text-slate-300 hover:bg-white/10"
                       }`}
                     >
@@ -605,7 +605,7 @@ export default function Projects() {
                       }
                       className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                         ragQuery.includes("Commercial")
-                          ? "bg-[#0df5c8]/20 text-[#0df5c8] border border-[#0df5c8]/50"
+                          ? "bg-[#3d6bff]/20 text-[#3d6bff] border border-[#3d6bff]/50"
                           : "bg-white/5 text-slate-300 hover:bg-white/10"
                       }`}
                     >
@@ -614,20 +614,20 @@ export default function Projects() {
                   </div>
 
                   {/* Simulator Output Window */}
-                  <div className="bg-[#03060a] rounded-xl p-4 font-mono text-xs border border-white/10">
+                  <div className="bg-[#03040a] rounded-xl p-4 font-mono text-xs border border-white/10">
                     <div className="text-slate-400 mb-2 flex items-center gap-2">
-                      <span className="text-[#0df5c8]">$</span>
+                      <span className="text-[#3d6bff]">$</span>
                       <span>query: "{ragQuery}"</span>
                     </div>
 
                     {ragSimulating ? (
-                      <div className="text-[#0df5c8] animate-pulse flex items-center gap-2 py-2">
+                      <div className="text-[#3d6bff] animate-pulse flex items-center gap-2 py-2">
                         <span>Executing hybrid vector search & reranking...</span>
                       </div>
                     ) : (
                       ragResult && (
                         <div className="text-slate-200 leading-relaxed bg-white/[0.03] p-3 rounded-lg border border-white/10 mt-2">
-                          <p className="text-[#0df5c8] text-[11px] mb-1 font-bold">
+                          <p className="text-[#3d6bff] text-[11px] mb-1 font-bold">
                             ✔ CITATION VERIFIED (Score: 0.942)
                           </p>
                           <p className="text-slate-300">{ragResult}</p>
@@ -646,7 +646,7 @@ export default function Projects() {
                 <ul className="space-y-2">
                   {activeModalProject.deepDive.keyInnovations.map((item, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-xs text-slate-300">
-                      <FiCheckCircle className="text-[#0df5c8] shrink-0 mt-0.5" />
+                      <FiCheckCircle className="text-[#3d6bff] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -661,9 +661,9 @@ export default function Projects() {
                   href={activeModalProject.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2"
+                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#3d6bff] border border-white/15 flex items-center gap-2"
                 >
-                  <FiExternalLink className="text-[#0df5c8]" />
+                  <FiExternalLink className="text-[#3d6bff]" />
                   <span>
                     {activeModalProject.id === "labychecker"
                       ? "Launch LabyChecker App"
@@ -675,7 +675,7 @@ export default function Projects() {
                   href={activeModalProject.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2"
+                  className="liquid-glass-pill px-5 py-2.5 text-xs font-mono text-white hover:text-[#3d6bff] border border-white/15 flex items-center gap-2"
                 >
                   <SiGithub />
                   <span>View Source on GitHub</span>

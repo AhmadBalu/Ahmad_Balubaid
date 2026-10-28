@@ -199,15 +199,15 @@ export default function TechStack() {
     <section
       id="stack"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Ambient glow */}
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#38bdf8]/10 top-1/4 left-1/4" />
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#c6ff00]/10 top-1/4 left-1/4" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center gap-3 mb-8">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 04 // ARCHITECTURAL CAPABILITY MATRIX ]
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
@@ -232,7 +232,7 @@ export default function TechStack() {
                 onClick={() => setSelectedCategory(tab.key)}
                 className={`liquid-glass-pill px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   selectedCategory === tab.key
-                    ? "bg-[#0df5c8]/20 text-[#0df5c8] border-[#0df5c8]/60 shadow-[0_0_15px_rgba(13,245,200,0.2)]"
+                    ? "bg-[#3d6bff]/20 text-[#3d6bff] border-[#3d6bff]/60 shadow-[0_0_15px_rgba(61,107,255,0.2)]"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -247,9 +247,9 @@ export default function TechStack() {
           {filteredTech.map((tech, i) => (
             <div
               key={tech.name + i}
-              className="tech-matrix-badge liquid-glass-card rounded-2xl p-5 border border-white/10 flex items-start gap-4 group hover:border-[#0df5c8]/40 transition-all"
+              className="tech-matrix-badge liquid-glass-card rounded-2xl p-5 border border-white/10 flex items-start gap-4 group hover:border-[#3d6bff]/40 transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/[0.05] border border-white/10 p-2.5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-[#0df5c8]/40 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-white/[0.05] border border-white/10 p-2.5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:border-[#3d6bff]/40 transition-all">
                 <img
                   src={tech.icon}
                   alt={tech.name}
@@ -259,7 +259,7 @@ export default function TechStack() {
 
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-syne font-bold text-white text-sm group-hover:text-[#0df5c8] transition-colors">
+                  <h3 className="font-syne font-bold text-white text-sm group-hover:text-[#3d6bff] transition-colors">
                     {tech.name}
                   </h3>
                   <span className="font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full liquid-glass-subtle text-slate-400">

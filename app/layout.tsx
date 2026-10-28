@@ -68,7 +68,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-[#05070c] text-[#f1f5f9] selection:bg-[#0df5c8]/20 selection:text-[#0df5c8]"
+        className="min-h-full flex flex-col bg-[#04050b] text-[#f1f5f9] selection:bg-[#3d6bff]/20 selection:text-[#3d6bff]"
       >
         {children}
       </body>

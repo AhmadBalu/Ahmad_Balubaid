@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-obsidian: #05070c;
-  --color-surface-glass: rgba(13, 18, 28, 0.5);
-  --color-accent-mint: #0df5c8;
-  --color-accent-azure: #38bdf8;
-  --color-accent-gold: #f59e0b;
-  --color-accent-violet: #818cf8;
+  /* Midnight Black base */
+  --color-obsidian: #04050b;
+  --color-surface-glass: rgba(11, 14, 26, 0.5);
+  /* Electric Cobalt Blue — primary accent */
+  --color-accent-cobalt: #3d6bff;
+  --color-accent-cobalt-deep: #1a3fd4;
+  /* Acid Lime — highlight accent */
+  --color-accent-lime: #c6ff00;
   --font-editorial: var(--font-editorial), "Cormorant Garamond", serif;
   --font-syne: var(--font-syne), sans-serif;
   --font-sans: var(--font-geist-sans), sans-serif;
@@ -14,11 +16,10 @@
 }
 
 :root {
-  --background: #05070c;
+  --background: #04050b;
   --foreground: #f8fafc;
-  --accent-mint: #0df5c8;
-  --accent-azure: #38bdf8;
-  --accent-gold: #f59e0b;
+  --accent-cobalt: #3d6bff;
+  --accent-lime: #c6ff00;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -96,10 +97,10 @@ body {
 }
 
 .liquid-glass-card:hover {
-  border-color: rgba(13, 245, 200, 0.3);
+  border-color: rgba(61, 107, 255, 0.3);
   box-shadow:
     0 25px 60px -10px rgba(0, 0, 0, 0.8),
-    0 0 30px -5px rgba(13, 245, 200, 0.12),
+    0 0 30px -5px rgba(61, 107, 255, 0.12),
     inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
   transform: translateY(-3px);
 }
@@ -117,9 +118,9 @@ body {
 
 .liquid-glass-pill:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(13, 245, 200, 0.4);
+  border-color: rgba(61, 107, 255, 0.4);
   box-shadow:
-    0 6px 20px rgba(13, 245, 200, 0.15),
+    0 6px 20px rgba(61, 107, 255, 0.15),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -130,12 +131,12 @@ body {
   left: 0;
   width: 6px;
   height: 6px;
-  background-color: #0df5c8;
+  background-color: #3d6bff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px #0df5c8;
+  box-shadow: 0 0 12px #3d6bff;
 }
 
 .custom-cursor-ring {
@@ -144,8 +145,8 @@ body {
   left: 0;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(13, 245, 200, 0.45);
-  background: rgba(13, 245, 200, 0.03);
+  border: 1px solid rgba(61, 107, 255, 0.45);
+  background: rgba(61, 107, 255, 0.03);
   backdrop-filter: blur(2px);
   border-radius: 50%;
   pointer-events: none;
@@ -157,8 +158,8 @@ body {
 .custom-cursor-ring.active {
   width: 58px;
   height: 58px;
-  border-color: rgba(13, 245, 200, 0.8);
-  background: rgba(13, 245, 200, 0.08);
+  border-color: rgba(61, 107, 255, 0.8);
+  background: rgba(61, 107, 255, 0.08);
 }
 
 /* Ambient Liquid Gradient Blobs */

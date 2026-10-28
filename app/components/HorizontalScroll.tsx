@@ -15,7 +15,7 @@ const chapters = [
     description:
       "Transforming raw legal statutes and unstructured enterprise data into sub-second vector semantic retrieval with strict grounded accuracy.",
     icon: FiCpu,
-    accent: "#0df5c8",
+    accent: "#3d6bff",
     stats: "94.2% Grounded Accuracy",
   },
   {
@@ -26,7 +26,7 @@ const chapters = [
     description:
       "Architecting low-latency asynchronous event hooks, real-time packet filtering, anti-bot mitigation, and robust Linux server deployment.",
     icon: FiServer,
-    accent: "#38bdf8",
+    accent: "#c6ff00",
     stats: "3,000+ Community Scaled",
   },
   {
@@ -37,7 +37,7 @@ const chapters = [
     description:
       "Bridging clinical datasets and predictive models to identify high-risk myocardial infarction complications with actionable ICU interpretability.",
     icon: FiZap,
-    accent: "#f59e0b",
+    accent: "#c6ff00",
     stats: "0.89 ROC-AUC Clinical Score",
   },
 ];
@@ -73,14 +73,14 @@ export default function HorizontalScroll() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-[#05070c] border-y border-white/10"
+      className="relative h-screen overflow-hidden bg-[#04050b] border-y border-white/10"
     >
       {/* Background ambient lighting */}
-      <div className="ambient-glow w-[600px] h-[600px] bg-[#0df5c8]/10 top-1/2 left-1/3 -translate-y-1/2" />
+      <div className="ambient-glow w-[600px] h-[600px] bg-[#3d6bff]/10 top-1/2 left-1/3 -translate-y-1/2" />
 
       {/* Top Section Indicator */}
       <div className="absolute top-8 left-8 sm:left-12 z-20 flex items-center gap-3">
-        <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+        <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
           [ 03 // CORE CAPABILITY CHAPTERS ]
         </span>
         <div className="h-px w-20 bg-white/20" />
@@ -149,7 +149,7 @@ export default function HorizontalScroll() {
 
                   <a
                     href="#projects"
-                    className="inline-flex items-center gap-2 font-mono text-xs text-[#0df5c8] uppercase tracking-wider hover:translate-x-1 transition-transform"
+                    className="inline-flex items-center gap-2 font-mono text-xs text-[#3d6bff] uppercase tracking-wider hover:translate-x-1 transition-transform"
                   >
                     <span>View Related Implementations</span>
                     <FiArrowRight />

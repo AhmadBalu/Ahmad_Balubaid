@@ -47,7 +47,7 @@ export default function DesignQuirksDock() {
               onClick={toggleSound}
               className={`px-3 py-1.5 rounded-full font-mono text-[11px] flex items-center gap-2 transition-all cursor-pointer ${
                 soundEnabled
-                  ? "bg-[#0df5c8]/20 text-[#0df5c8] border border-[#0df5c8]/60 shadow-[0_0_12px_rgba(13,245,200,0.3)]"
+                  ? "bg-[#3d6bff]/20 text-[#3d6bff] border border-[#3d6bff]/60 shadow-[0_0_12px_rgba(61,107,255,0.3)]"
                   : "text-slate-400 hover:text-white hover:bg-white/10"
               }`}
               title="Toggle Web Audio procedural UI sound effects"
@@ -55,9 +55,9 @@ export default function DesignQuirksDock() {
               {soundEnabled ? (
                 <>
                   <div className="flex items-end gap-0.5 h-3">
-                    <span className="w-0.5 bg-[#0df5c8] rounded-full animate-eq-1" />
-                    <span className="w-0.5 bg-[#0df5c8] rounded-full animate-eq-2" />
-                    <span className="w-0.5 bg-[#0df5c8] rounded-full animate-eq-3" />
+                    <span className="w-0.5 bg-[#3d6bff] rounded-full animate-eq-1" />
+                    <span className="w-0.5 bg-[#3d6bff] rounded-full animate-eq-2" />
+                    <span className="w-0.5 bg-[#3d6bff] rounded-full animate-eq-3" />
                   </div>
                   <span className="hidden sm:inline text-[10px] uppercase font-bold tracking-wider">SFX ON</span>
                 </>
@@ -74,10 +74,10 @@ export default function DesignQuirksDock() {
           <MagneticButton strength={0.35}>
             <button
               onClick={() => setTerminalOpen(true)}
-              className="liquid-glass-pill px-3.5 py-1.5 text-[11px] font-mono text-white hover:text-[#0df5c8] bg-white/[0.08] hover:bg-[#0df5c8]/20 border border-white/20 hover:border-[#0df5c8]/60 flex items-center gap-2 transition-all cursor-pointer shadow-lg"
+              className="liquid-glass-pill px-3.5 py-1.5 text-[11px] font-mono text-white hover:text-[#3d6bff] bg-white/[0.08] hover:bg-[#3d6bff]/20 border border-white/20 hover:border-[#3d6bff]/60 flex items-center gap-2 transition-all cursor-pointer shadow-lg"
               title="Open interactive system terminal (hotkey: ~)"
             >
-              <FiTerminal size={13} className="text-[#0df5c8]" />
+              <FiTerminal size={13} className="text-[#3d6bff]" />
               <span className="text-[10px] uppercase font-bold tracking-widest">CLI [~]</span>
             </button>
           </MagneticButton>

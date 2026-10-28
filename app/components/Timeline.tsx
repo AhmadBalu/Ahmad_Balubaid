@@ -28,7 +28,20 @@ const timelineData: TimelineEntry[] = [
       "Architecting full-stack Next.js and PostgreSQL enterprise systems",
     ],
     metrics: "Focus: Applied AI & Healthcare ML",
-    accent: "#0df5c8",
+    accent: "#3d6bff",
+  },
+  {
+    period: "2022 — PRESENT",
+    role: "Arabic Proofreader",
+    institution: "LabyMod",
+    type: "LOCALIZATION & COMMUNITY EXPANSION",
+    highlights: [
+      "Direct linguistic quality assurance on Weblate for a dedicated 5-member Arabic localization squad, auditing, reviewing, and approving peer translations for grammatical accuracy and tone",
+      "Authored and overhauled hundreds of critical in-game strings, module interfaces, settings, and release notes to ensure native right-to-left (RTL) formatting and idiomatic gaming terminology",
+      "Spearheaded localization improvements and cultural adaptations that eliminated onboarding friction, substantially expanding LabyMod's active Arabic-speaking player base across the MENA region",
+    ],
+    metrics: "Impact: 5-Member Team QA • Weblate",
+    accent: "#c6ff00",
   },
   {
     period: "2024 — 2025",
@@ -41,7 +54,7 @@ const timelineData: TimelineEntry[] = [
       "Built cryptographic Laby.net Discord verification, 3D skin rendering, and dynamic timestamp normalization",
     ],
     metrics: "Scale: 18+ Networks Integrated",
-    accent: "#38bdf8",
+    accent: "#c6ff00",
   },
   {
     period: "2024 — 2025",
@@ -55,7 +68,7 @@ const timelineData: TimelineEntry[] = [
       "Scaled infrastructure supporting a 3,000+ active online user base with 99.8% uptime",
     ],
     metrics: "Scale: 3,000+ Active Users",
-    accent: "#f59e0b",
+    accent: "#c6ff00",
   },
   {
     period: "2024",
@@ -68,7 +81,7 @@ const timelineData: TimelineEntry[] = [
       "Mastered digital marketing mechanics, consumer analytics, and monetization workflows",
     ],
     metrics: "Impact: Commercial Growth & SEO",
-    accent: "#f59e0b",
+    accent: "#c6ff00",
   },
   {
     period: "2023",
@@ -79,7 +92,7 @@ const timelineData: TimelineEntry[] = [
       "Completed secondary education with rigorous STEM and computational coursework",
       "Developed foundational algorithms, object-oriented concepts, and web fundamentals",
     ],
-    accent: "#818cf8",
+    accent: "#3d6bff",
   },
 ];
 
@@ -112,15 +125,15 @@ export default function Timeline() {
     <section
       id="timeline"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Ambient background glow */}
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#0df5c8]/10 bottom-20 -left-20" />
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#3d6bff]/10 bottom-20 -left-20" />
 
       <div className="max-w-5xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center gap-3 mb-8">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 05 // CHRONOLOGICAL TELEMETRY ]
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
@@ -145,7 +158,7 @@ export default function Timeline() {
             >
               {/* Timeline Node Orb */}
               <div
-                className="absolute -left-[31px] sm:-left-[47px] top-6 w-3.5 h-3.5 rounded-full border-2 border-[#05070c] shadow-[0_0_12px_currentColor]"
+                className="absolute -left-[31px] sm:-left-[47px] top-6 w-3.5 h-3.5 rounded-full border-2 border-[#04050b] shadow-[0_0_12px_currentColor]"
                 style={{
                   backgroundColor: item.accent,
                   color: item.accent,

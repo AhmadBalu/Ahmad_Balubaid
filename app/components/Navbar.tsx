@@ -34,10 +34,10 @@ export default function Navbar() {
         <MagneticButton strength={0.25}>
           <a
             href="#"
-            className="liquid-glass-pill px-4 py-2 flex items-center gap-3 group transition-all duration-300 hover:border-[#0df5c8]/40 block"
+            className="liquid-glass-pill px-4 py-2 flex items-center gap-3 group transition-all duration-300 hover:border-[#3d6bff]/40 block"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-[#0df5c8] animate-pulse shadow-[0_0_8px_#0df5c8]" />
-            <span className="font-mono text-xs font-semibold tracking-wider text-white group-hover:text-[#0df5c8] transition-colors">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#3d6bff] animate-pulse shadow-[0_0_8px_#3d6bff]" />
+            <span className="font-mono text-xs font-semibold tracking-wider text-white group-hover:text-[#3d6bff] transition-colors">
               <TextScramble text="AHMAD BALUBAID" />
             </span>
             <span className="hidden md:inline-block font-mono text-[10px] text-slate-400 border-l border-white/10 pl-2">
@@ -56,9 +56,9 @@ export default function Navbar() {
             <a
               key={item.label}
               href={item.href}
-              className="px-3.5 py-1.5 rounded-full text-[11px] font-mono tracking-wider uppercase text-slate-300 hover:text-[#0df5c8] hover:bg-white/[0.06] transition-all duration-200 flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-full text-[11px] font-mono tracking-wider uppercase text-slate-300 hover:text-[#3d6bff] hover:bg-white/[0.06] transition-all duration-200 flex items-center gap-1.5"
             >
-              <span className="text-[9px] text-[#0df5c8]/60">{item.index}</span>
+              <span className="text-[9px] text-[#3d6bff]/60">{item.index}</span>
               <TextScramble text={item.label} speed={40} />
             </a>
           ))}
@@ -70,9 +70,9 @@ export default function Navbar() {
           <MagneticButton strength={0.35}>
             <a
               href="mailto:Ahmadobalubaid@gmail.com?subject=Portfolio%20Inquiry%20-%20Resume%20Request"
-              className="liquid-glass-pill px-4 py-2 font-mono text-[11px] text-white hover:text-[#0df5c8] border border-white/15 hover:border-[#0df5c8]/50 flex items-center gap-2 group transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] block"
+              className="liquid-glass-pill px-4 py-2 font-mono text-[11px] text-white hover:text-[#3d6bff] border border-white/15 hover:border-[#3d6bff]/50 flex items-center gap-2 group transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] block"
             >
-              <FiDownload className="text-[#0df5c8] group-hover:translate-y-0.5 transition-transform" />
+              <FiDownload className="text-[#3d6bff] group-hover:translate-y-0.5 transition-transform" />
               <span className="tracking-wider uppercase text-[10px] sm:text-[11px]">Transmission</span>
             </a>
           </MagneticButton>
@@ -80,7 +80,7 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden liquid-glass-pill p-2 text-white hover:text-[#0df5c8] transition-colors"
+            className="lg:hidden liquid-glass-pill p-2 text-white hover:text-[#3d6bff] transition-colors"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
@@ -97,15 +97,15 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider uppercase text-slate-200 hover:text-[#0df5c8] hover:bg-white/[0.08] transition-colors flex items-center justify-between"
+                className="px-4 py-2.5 rounded-xl text-xs font-mono tracking-wider uppercase text-slate-200 hover:text-[#3d6bff] hover:bg-white/[0.08] transition-colors flex items-center justify-between"
               >
                 <span>{item.label}</span>
-                <span className="text-[10px] text-[#0df5c8]">{item.index} //</span>
+                <span className="text-[10px] text-[#3d6bff]">{item.index} //</span>
               </a>
             ))}
             <div className="pt-3 border-t border-white/10 flex items-center justify-between px-2 font-mono text-[10px] text-slate-400">
               <span>ENGINEER & RESEARCHER</span>
-              <span className="text-[#0df5c8]">PORTFOLIO // 2026</span>
+              <span className="text-[#3d6bff]">PORTFOLIO // 2026</span>
             </div>
           </nav>
         </div>

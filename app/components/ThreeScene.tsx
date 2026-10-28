@@ -92,9 +92,9 @@ function ConstellationField() {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
 
-    const color1 = new THREE.Color("#0df5c8");
-    const color2 = new THREE.Color("#38bdf8");
-    const color3 = new THREE.Color("#818cf8");
+    const color1 = new THREE.Color("#3d6bff");
+    const color2 = new THREE.Color("#c6ff00");
+    const color3 = new THREE.Color("#3d6bff");
 
     for (let i = 0; i < count; i++) {
       const idx = i * 3;
@@ -195,8 +195,8 @@ export default function ThreeScene() {
       >
         <ambientLight intensity={0.75} />
         <directionalLight position={[5, 6, 4]} intensity={1.8} color="#ffffff" />
-        <directionalLight position={[-5, 3, 2]} intensity={1.2} color="#0df5c8" />
-        <directionalLight position={[5, -2, -3]} intensity={1.0} color="#38bdf8" />
+        <directionalLight position={[-5, 3, 2]} intensity={1.2} color="#3d6bff" />
+        <directionalLight position={[5, -2, -3]} intensity={1.0} color="#c6ff00" />
         <pointLight position={[0, 2.5, 3]} intensity={0.6} color="#ffffff" />
 
         <InteractiveControls />

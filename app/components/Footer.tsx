@@ -9,15 +9,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#030509] border-t border-white/10 py-16 px-4 sm:px-8 md:px-12 overflow-hidden">
+    <footer className="relative bg-[#02030a] border-t border-white/10 py-16 px-4 sm:px-8 md:px-12 overflow-hidden">
       {/* Background glow */}
-      <div className="ambient-glow w-[300px] h-[300px] bg-[#0df5c8]/5 -top-10 left-1/2 -translate-x-1/2" />
+      <div className="ambient-glow w-[300px] h-[300px] bg-[#3d6bff]/5 -top-10 left-1/2 -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
         {/* Left Identity & Coordinates */}
         <div className="text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-[#0df5c8]" />
+            <span className="w-2 h-2 rounded-full bg-[#3d6bff]" />
             <h4 className="font-syne font-bold text-white text-base tracking-wider">
               AHMAD BALUBAID
             </h4>
@@ -33,7 +33,7 @@ export default function Footer() {
             href="https://github.com/AhmadBalu"
             target="_blank"
             rel="noopener noreferrer"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-white hover:border-[#0df5c8]/50 transition-colors"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-white hover:border-[#3d6bff]/50 transition-colors"
             aria-label="GitHub"
           >
             <SiGithub size={16} />
@@ -42,14 +42,14 @@ export default function Footer() {
             href="https://linkedin.com/in/ahmad-balubaid/"
             target="_blank"
             rel="noopener noreferrer"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#38bdf8] hover:border-[#38bdf8]/50 transition-colors"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#c6ff00] hover:border-[#c6ff00]/50 transition-colors"
             aria-label="LinkedIn"
           >
             <FaLinkedin size={16} />
           </a>
           <a
             href="mailto:Ahmadobalubaid@gmail.com"
-            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#0df5c8] hover:border-[#0df5c8]/50 transition-colors"
+            className="liquid-glass-pill p-3 text-slate-300 hover:text-[#3d6bff] hover:border-[#3d6bff]/50 transition-colors"
             aria-label="Email"
           >
             <FiMail size={16} />
@@ -60,7 +60,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-end gap-2">
           <button
             onClick={scrollToTop}
-            className="liquid-glass-pill px-4 py-2 text-xs font-mono text-slate-300 hover:text-[#0df5c8] flex items-center gap-2 border border-white/10 cursor-pointer group"
+            className="liquid-glass-pill px-4 py-2 text-xs font-mono text-slate-300 hover:text-[#3d6bff] flex items-center gap-2 border border-white/10 cursor-pointer group"
           >
             <span>Ascend to Top</span>
             <FiArrowUp className="group-hover:-translate-y-0.5 transition-transform" />

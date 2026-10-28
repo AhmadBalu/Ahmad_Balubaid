@@ -90,7 +90,7 @@ export default function ParticleNetwork() {
         // Render particle dot
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(13, 245, 200, ${alpha})`;
+        ctx.fillStyle = `rgba(61, 107, 255, ${alpha})`;
         ctx.fill();
 
         // Connect nearby particles with glowing lines
@@ -103,7 +103,7 @@ export default function ParticleNetwork() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
+            ctx.strokeStyle = `rgba(198, 255, 0, ${lineAlpha})`;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }

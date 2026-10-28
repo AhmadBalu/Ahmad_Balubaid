@@ -57,10 +57,10 @@ export default function MarqueeBar() {
   }, []);
 
   return (
-    <div className="relative py-6 bg-[#04060a] border-y border-white/10 overflow-hidden select-none">
+    <div className="relative py-6 bg-[#03040a] border-y border-white/10 overflow-hidden select-none">
       {/* Subtle edge fades */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#04060a] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#04060a] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#03040a] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#03040a] to-transparent z-10 pointer-events-none" />
 
       {/* Row 1 */}
       <div className="flex overflow-hidden py-1">
@@ -70,7 +70,7 @@ export default function MarqueeBar() {
               <span className="font-syne font-bold text-xs sm:text-sm tracking-[0.2em] uppercase text-white/90">
                 {item}
               </span>
-              <span className="ml-6 text-[#0df5c8] text-xs">◆</span>
+              <span className="ml-6 text-[#3d6bff] text-xs">◆</span>
             </div>
           ))}
         </div>
@@ -84,7 +84,7 @@ export default function MarqueeBar() {
               <span className="font-mono text-[11px] sm:text-xs tracking-[0.25em] uppercase text-slate-400">
                 {item}
               </span>
-              <span className="ml-6 text-[#38bdf8] text-[9px]">◇</span>
+              <span className="ml-6 text-[#c6ff00] text-[9px]">◇</span>
             </div>
           ))}
         </div>

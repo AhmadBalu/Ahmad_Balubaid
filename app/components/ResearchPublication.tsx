@@ -61,17 +61,17 @@ export default function ResearchPublication() {
     <section
       id="research"
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden border-t border-white/10"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden border-t border-white/10"
     >
       {/* Ambient background light */}
-      <div className="ambient-glow w-[550px] h-[550px] bg-[#0df5c8]/10 top-1/3 -left-24" />
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#38bdf8]/10 bottom-10 right-10" />
+      <div className="ambient-glow w-[550px] h-[550px] bg-[#3d6bff]/10 top-1/3 -left-24" />
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#c6ff00]/10 bottom-10 right-10" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
               [ 03 // PEER-REVIEWED RESEARCH & IEEE PUBLICATION ]
             </span>
             <div className="h-px w-24 bg-gradient-to-r from-white/15 to-transparent" />
@@ -95,12 +95,12 @@ export default function ResearchPublication() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           {/* Left: IEEE Paper Preview Card */}
           <div ref={leftCardRef} className="lg:col-span-6">
-            <TiltCard maxTilt={6} glowColor="rgba(13, 245, 200, 0.15)" className="h-full">
+            <TiltCard maxTilt={6} glowColor="rgba(61, 107, 255, 0.15)" className="h-full">
               <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between h-full">
                 <div>
                   {/* Top Meta Badges */}
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#0df5c8] border border-[#0df5c8]/40 flex items-center gap-2">
+                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#3d6bff] border border-[#3d6bff]/40 flex items-center gap-2">
                       <FiBookOpen />
                       <TextScramble text="IEEE Xplore Digital Library" />
                     </span>
@@ -117,11 +117,11 @@ export default function ResearchPublication() {
                   {/* Authors List */}
                   <div className="liquid-glass-subtle rounded-xl p-3.5 border border-white/10 mb-6 font-mono text-xs">
                     <p className="text-slate-400 text-[10px] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                      <FiUsers className="text-[#0df5c8]" />
+                      <FiUsers className="text-[#3d6bff]" />
                       <span>Authors & Researchers</span>
                     </p>
                     <p className="text-slate-200 leading-relaxed font-medium">
-                      Passent ElKafrawy · Ahmad Hakim · <span className="text-[#0df5c8] font-bold">Ahmad Balubaid</span> · Faisal Alkhalili
+                      Passent ElKafrawy · Ahmad Hakim · <span className="text-[#3d6bff] font-bold">Ahmad Balubaid</span> · Faisal Alkhalili
                     </p>
                     <p className="text-slate-400 text-[11px] mt-1">
                       Effat University — Department of Computer Science
@@ -137,9 +137,9 @@ export default function ResearchPublication() {
                       sizes="(max-width: 768px) 100vw, 600px"
                       className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#06080f] via-transparent to-transparent opacity-60" />
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                      <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                      <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-[#c6ff00] border border-[#c6ff00]/30 flex items-center gap-1">
                         <FiCheckCircle />
                         <span>Peer-Reviewed & Indexed</span>
                       </span>
@@ -159,7 +159,7 @@ export default function ResearchPublication() {
                       href="https://linkedin.com/in/ahmad-balubaid/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-white hover:text-[#0df5c8] border border-white/15 flex items-center gap-2 transition-all block"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-white hover:text-[#3d6bff] border border-white/15 flex items-center gap-2 transition-all block"
                     >
                       <FiExternalLink />
                       <span>View IEEE Publication</span>
@@ -175,13 +175,13 @@ export default function ResearchPublication() {
 
           {/* Right: Research Team & LinkedIn Announcement Card */}
           <div ref={rightCardRef} className="lg:col-span-6">
-            <TiltCard maxTilt={6} glowColor="rgba(56, 189, 248, 0.15)" className="h-full">
+            <TiltCard maxTilt={6} glowColor="rgba(198, 255, 0, 0.15)" className="h-full">
               <div className="liquid-glass rounded-3xl p-6 sm:p-8 border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col justify-between h-full">
                 <div>
                   {/* Top Meta Badges */}
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#38bdf8] border border-[#38bdf8]/40 flex items-center gap-2">
-                      <FaLinkedin className="text-base text-[#38bdf8]" />
+                    <span className="liquid-glass-pill px-3.5 py-1 text-xs font-mono text-[#c6ff00] border border-[#c6ff00]/40 flex items-center gap-2">
+                      <FaLinkedin className="text-base text-[#c6ff00]" />
                       <TextScramble text="Research Spotlight & Team" />
                     </span>
                     <span className="font-mono text-xs text-slate-400">
@@ -198,7 +198,7 @@ export default function ResearchPublication() {
                       sizes="(max-width: 768px) 100vw, 600px"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#080d17] via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#06080f] via-transparent to-transparent opacity-60" />
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                       <span className="liquid-glass-pill px-3 py-1 text-[10px] font-mono text-slate-200 border border-white/20">
                         23rd International Learning & Tech Conference (ILTC)
@@ -209,7 +209,7 @@ export default function ResearchPublication() {
                   {/* LinkedIn Post Commentary Block */}
                   <div className="liquid-glass-card rounded-2xl p-5 border border-white/10 mb-6 relative">
                     <div className="flex items-center gap-2 mb-3">
-                      <FaLinkedin className="text-[#38bdf8] text-base" />
+                      <FaLinkedin className="text-[#c6ff00] text-base" />
                       <span className="font-mono text-[11px] uppercase tracking-wider text-white font-semibold">
                         LinkedIn Research Announcement
                       </span>
@@ -232,13 +232,13 @@ export default function ResearchPublication() {
                       href="https://linkedin.com/in/ahmad-balubaid/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#38bdf8] border border-white/15 flex items-center gap-2 transition-all block"
+                      className="liquid-glass-pill px-4 py-2.5 text-xs font-mono text-slate-200 hover:text-[#c6ff00] border border-white/15 flex items-center gap-2 transition-all block"
                     >
                       <FaLinkedin />
                       <span>Connect on LinkedIn</span>
                     </a>
                   </MagneticButton>
-                  <span className="font-mono text-[11px] text-[#0df5c8]">
+                  <span className="font-mono text-[11px] text-[#3d6bff]">
                     #IEEE #AI #ArabicNLP #RAG
                   </span>
                 </div>

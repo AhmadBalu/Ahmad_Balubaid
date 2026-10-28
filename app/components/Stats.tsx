@@ -20,21 +20,21 @@ const certifications = [
     issuer: "DeepLearning.AI",
     year: "2026",
     credentialId: "DL-AI-LA-9842",
-    accent: "#0df5c8",
+    accent: "#3d6bff",
   },
   {
     name: "Introduction to DevOps & CI/CD Pipelines",
     issuer: "IBM",
     year: "2026",
     credentialId: "IBM-DEVOPS-6719",
-    accent: "#38bdf8",
+    accent: "#c6ff00",
   },
   {
     name: "Python Data Structures & Algorithms",
     issuer: "University of Michigan",
     year: "2023",
     credentialId: "UMICH-PYDS-3104",
-    accent: "#f59e0b",
+    accent: "#c6ff00",
   },
 ];
 
@@ -87,15 +87,15 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#05070c] overflow-hidden"
+      className="relative py-32 px-4 sm:px-8 md:px-12 bg-[#04050b] overflow-hidden"
     >
       {/* Background ambient lighting */}
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#38bdf8]/10 top-1/3 -right-20" />
+      <div className="ambient-glow w-[500px] h-[500px] bg-[#c6ff00]/10 top-1/3 -right-20" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header Tag */}
         <div className="flex items-center gap-3 mb-8">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#0df5c8]">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-[#3d6bff]">
             [ 06 // ACCREDITATIONS & VALIDATED METRICS ]
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
@@ -120,7 +120,7 @@ export default function Stats() {
                 className="stat-metric-card liquid-glass-card rounded-3xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#0df5c8] mb-2 block">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#3d6bff] mb-2 block">
                     [ 0{i + 1} // METRIC ]
                   </span>
                   <div className="flex items-baseline gap-1 mb-2">
@@ -130,7 +130,7 @@ export default function Stats() {
                     >
                       0
                     </span>
-                    <span className="font-syne font-bold text-2xl text-[#0df5c8]">
+                    <span className="font-syne font-bold text-2xl text-[#3d6bff]">
                       {stat.suffix}
                     </span>
                   </div>
@@ -145,14 +145,14 @@ export default function Stats() {
           {/* Right: Verified Certifications List */}
           <div className="lg:col-span-6 space-y-4">
             <h3 className="font-syne font-bold text-xs uppercase tracking-[0.25em] text-slate-400 mb-6 flex items-center gap-2">
-              <FiShield className="text-[#0df5c8]" />
+              <FiShield className="text-[#3d6bff]" />
               <span>Verified Industry Accreditations</span>
             </h3>
 
             {certifications.map((cert, i) => (
               <div
                 key={i}
-                className="cert-card liquid-glass-card rounded-2xl p-5 border border-white/10 flex items-start gap-4 group hover:border-[#0df5c8]/40 transition-all"
+                className="cert-card liquid-glass-card rounded-2xl p-5 border border-white/10 flex items-start gap-4 group hover:border-[#3d6bff]/40 transition-all"
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border"
@@ -167,7 +167,7 @@ export default function Stats() {
 
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-                    <h4 className="font-syne font-bold text-white text-sm sm:text-base group-hover:text-[#0df5c8] transition-colors">
+                    <h4 className="font-syne font-bold text-white text-sm sm:text-base group-hover:text-[#3d6bff] transition-colors">
                       {cert.name}
                     </h4>
                     <span className="font-mono text-xs px-2.5 py-0.5 rounded-full liquid-glass-subtle text-slate-300 font-medium">
@@ -179,7 +179,7 @@ export default function Stats() {
                     Issuer: <span className="text-white font-medium">{cert.issuer}</span>
                   </p>
 
-                  <div className="flex items-center gap-2 font-mono text-[10px] text-emerald-400">
+                  <div className="flex items-center gap-2 font-mono text-[10px] text-[#c6ff00]">
                     <FiCheckCircle size={12} />
                     <span>VERIFIED CREDENTIAL • {cert.credentialId}</span>
                   </div>
